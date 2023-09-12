@@ -10,18 +10,50 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="nav-bar">
+    <header className="el-nav-bar">
       {/* <div className="container flex-row justify-space-between-lg justify-center align-center"> */}
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
+          <div class="container text-center after-nav">
+            <div class="row">
+                {/* <!-- first column --> */}
+              <div class="col first-col">
+                <ul class="nav">
+                    <li class="nav-item">
+                    <Link className="nav-text" to="/me">
                 {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
-                {Auth.getProfile().authenticatedPerson.username}'s profile
+                Profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <Link className="nav-text" onClick={logout}>
                 Logout
-              </button>
+              </Link>
+                    </li>
+                  </ul>
+              </div>
+              {/* <!-- second column --> */}
+              <div class="col">
+                <div class="title">
+                    <h1 class="neonText">Zero</h1><h1 class="neon">Proof</h1>
+                    </div>
+              </div>
+              {/* <!-- third column --> */}
+              <div class="col third-col">
+                <ul class="nav">
+                    <li class="nav-item">
+                    <Link className="nav-text" to="/me">
+                 Recipes
+              </Link>
+              <Link className="nav-text" onClick={logout}>
+                Favorites
+              </Link>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        
+              
             </>
           ) : (
             <>

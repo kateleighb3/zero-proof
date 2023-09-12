@@ -22,7 +22,7 @@ color: white;
 border: 2px solid white;
 backdrop-filter: blur(3px);
 padding: 30px;
-
+text-align: center;
 }
 
 .card-head{
@@ -33,3 +33,12 @@ padding: 30px;
     text-align: center;
 }
 
+.the-button{
+    color: white;
+    background-color:#078C03;
+    border: none;
+    border-radius: 7px;
+    font-size: 24px;
+    padding: 5px;
+    /* margin-left: 75px; */
+}
