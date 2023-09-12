@@ -42,10 +42,11 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mt-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+    <main className="login-bg">
+      {/* <div className=> */}
+     <div className="cont">
+        <div className="login-card">
+          <h4 className="card-head">Login</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -88,6 +89,7 @@ const Login = (props) => {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </main>
   );
 };

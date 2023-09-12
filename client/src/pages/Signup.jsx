@@ -6,6 +6,8 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import './signup.css';
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
@@ -39,10 +41,10 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+    <main className="signup-bg">
+      <div className="cont">
+        <div className="login-card">
+        <h4 className="card-head">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>

@@ -1,4 +1,4 @@
-.login-bg {
+.signup-bg {
     background-image: url('../assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg');
     background-size: cover;
     position: relative;
@@ -21,7 +21,8 @@
 color: white;
 border: 2px solid white;
 backdrop-filter: blur(3px);
-padding: 40px;
+padding: 30px;
+
 }
 
 .card-head{
@@ -31,3 +32,4 @@ padding: 40px;
     font-family: "yellowtail";
     text-align: center;
 }
+
