@@ -1,4 +1,6 @@
 import React from "react";
+
+// import necessary
 import {
   DataMap,
   GoogleMapsWrapper,
@@ -6,7 +8,7 @@ import {
   Layout,
 } from "../components/maps";
 
-const SearchMap = () => (
+const MainMap = () => (
   <GoogleMapsWrapper>
     <Layout>
       <DataMap mapId="map_id" locations={LOCATIONS} />
@@ -14,4 +16,4 @@ const SearchMap = () => (
   </GoogleMapsWrapper>
 );
 
-export default SearchMap;
+export default MainMap;
