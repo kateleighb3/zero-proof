@@ -8,6 +8,7 @@ import Api from "../../utils/Api"
 export const PlacesAutocomplete = ({ setSelected, setResult }) => {
     const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
 
+    // api function to get info on place
     const searchPlace = (query) =>
     Api.getPlaceInfo(query)
         .then((res) => {

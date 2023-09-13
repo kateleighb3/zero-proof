@@ -12,7 +12,7 @@ export const SearchMap = ({
 }) => {
     const center = useMemo(() => ({ lat: 28.53540855723579, lng: -81.38559605386592 }), []);
     const [selected, setSelected] = useState(null);
-    const [result, setResult] = useState({});
+    const [result, setResult] = useState(null);
 
     const ref = useRef(null);
 
@@ -44,8 +44,18 @@ export const SearchMap = ({
                 map: map
             });
             
+            // add info to infowindow
+            const infowindow = new google.maps.InfoWindow({
+                maxWidth: 300,
+                content: `<p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=''></img><button>click here for the full description</button>`,
+            });
+
+            // add infowindow to maker
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.open(map, marker);
+            });
         }
-    }, [ref, mapId, selected]);
+    }, [ref, mapId, selected, result]);
 
     return (
         <>
