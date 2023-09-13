@@ -5,7 +5,7 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    skills: [String]!
+    comments: [Comment]
   }
 
   type Comment {
@@ -45,7 +45,7 @@ const typeDefs = `
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addSkill(profileId: ID!, skill: String!): Profile
+    addComment(commentText: String!): Comment
     removeProfile: Profile
     removeSkill(skill: String!): Profile
 
@@ -53,6 +53,10 @@ const typeDefs = `
     removeLocation(locationId: ID!): Location
 
     addComment(locationId: ID!, comment: Comment! ): Location
+
+    removeComment(commentId: ID!): Profile
+    
+
   }
 `;
 
