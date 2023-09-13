@@ -18,7 +18,7 @@ export const PlacesAutocomplete = ({ setSelected }) => {
 
         console.log(results[0]);
 
-        setSelected({ lat, lng });
+        setSelected({ lat:lat, long:lng, place_id: results[0].place_id });
     };
 
     return (

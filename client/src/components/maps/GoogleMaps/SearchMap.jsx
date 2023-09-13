@@ -23,8 +23,23 @@ export const SearchMap = ({
                 mapId,
             });
 
+            console.log(selected);
+
+            let lat;
+            let lng;
+            let place_id;
+
+            // sets variables if a place is selected
+            if(selected){
+                console.log(selected.lat);
+                lat = selected.lat;
+                lng = selected.long;
+                place_id = selected.place_id;
+            }
+
+            // if a location is selected, a marker will appear for it
             const marker = new google.maps.Marker({ 
-                position: selected,
+                position: selected ? { lat, lng } : null,
                 map: map
             });
             
