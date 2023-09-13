@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { addClusters, addMarkers } from "./markers";
 
+// currently centered on orlando
 const DEFAULT_CENTER = { lat: 28.53540855723579, lng: -81.38559605386592 };
 const DEFAULT_ZOOM = 11;
 

@@ -11,5 +11,5 @@ export const GoogleMapsWrapper = ({
     return <div>Cannot display the map: google maps api key missing</div>;
   }
 
-  return <Wrapper apiKey={apiKey}>{children}</Wrapper>;
+  return <Wrapper apiKey={apiKey} libraries={["places"]}>{children}</Wrapper>;
 };

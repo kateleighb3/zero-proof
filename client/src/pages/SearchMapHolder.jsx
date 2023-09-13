@@ -2,19 +2,18 @@ import React from "react";
 
 // import necessary
 import {
-  DataMap,
+  SearchMap,
   GoogleMapsWrapper,
   LOCATIONS,
   Layout,
 } from "../components/maps";
 
-
-const MainMap = () => (
+const SearchMapHolder = () => (
   <GoogleMapsWrapper>
     <Layout>
-      <DataMap mapId="map_id" locations={LOCATIONS} />
+      <SearchMap mapId="map_id" />
     </Layout>
   </GoogleMapsWrapper>
 );
 
-export default MainMap;
+export default SearchMapHolder;

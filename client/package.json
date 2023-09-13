@@ -15,6 +15,9 @@
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.0.15",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "use-places-autocomplete": "^1.11.0",
+    "@react-google-maps/api": "^2.7.0",
+    "@reach/combobox": "^0.16.5",
     "styled-components": "^5.3.10",
     "@apollo/client": "^3.7.14",
     "bootstrap": "^5.3.1",
