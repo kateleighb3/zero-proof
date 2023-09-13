@@ -11,7 +11,7 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="absolute z-10 w-full border-4 border-white">
+    <header className="absolute z-10 w-full">
       {/* <div className="container flex-row justify-space-between-lg justify-center align-center"> */}
         {/* <div> */}
           {Auth.loggedIn() ? (
@@ -30,7 +30,10 @@ const Header = () => {
             </div>
             {/* middle col */}
             <div className="column w-2/6 p-5 float-left text-center">
+            
+            <Link to="/">
             <h1 class="neonText">Zero</h1><h1 class="neon">Proof</h1>
+            </Link>
             </div>
             {/* right col */}
             <div className="column w-2/6 p-5 float-left text-right">

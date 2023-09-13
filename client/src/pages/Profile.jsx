@@ -6,8 +6,10 @@ import ThoughtList from '../components/ThoughtList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Item from '@mui/material/ListItem';
+import { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 
 
 
@@ -32,31 +34,56 @@ const Profile = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>Loading...</div>;
   }
 
   if (!user?.username) {
     return (
-      <h4>
+      <div className='flex justify-center items-center bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+      <h4 className='text-white text-2xl'>
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>
+
+      </div>
     );
   }
 
   return (
     <div>
       <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
-        <div className="m-0 p-0 flex flex-col min-h-screen border-2 border-red"> 
+        <div className="m-0 p-0 flex justify-center items-center min-h-screen"> 
           
-        <Grid container spacing={2}>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid item xs={6} md={8}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-        </Grid>
+        {/* <div class="row content-none"> */}
+        {/* first col */}
+          <div class="column backdrop-blur m-5 p-10 float-left w-2/5 border-2 border-white">
+          <h3 className="font-sans text-2xl text-white">Find a bar:</h3>
+
+          <form>
+    <TextField
+      id="search-bar"
+      className="text bg-white"
+      onInput={(e) => {
+        setSearchQuery(e.target.value);
+      }}
+      label="Enter a city name"
+      variant="outlined"
+      placeholder="Search..."
+      size="small"
+    />
+    <IconButton type="submit" aria-label="search">
+      <SearchIcon style={{ fill: "green"}} />
+    </IconButton>
+  </form>
+
+          </div>
+
+          {/* second col */}
+          <div class="column m-5 p-10 backdrop-blur float-left w-3/5 border-2 border-white">
+            Place map here
+            </div>
+          
+          {/* </div> */}
 
       
     
