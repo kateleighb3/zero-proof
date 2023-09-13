@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
-import './index.css';
+// import './index.css';
 
 const Header = () => {
   const logout = (event) => {
@@ -10,7 +10,7 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="el-nav-bar">
+    <header className="absolute z-10 w-full">
       {/* <div className="container flex-row justify-space-between-lg justify-center align-center"> */}
         <div>
           {Auth.loggedIn() ? (

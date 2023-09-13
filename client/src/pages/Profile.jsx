@@ -8,8 +8,6 @@ import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
-import './profile.css';
-
 const Profile = () => {
   const { username: userParam } = useParams();
 
@@ -40,11 +38,20 @@ const Profile = () => {
   }
 
   return (
-    // <div>
-      <div className="profile-bg">
-        <div className="contain">
+    <div>
+      <div className="profile-bg"> </div>
+        <div className="contain"> </div>
+          
 
-
+        {/* <div class="col-6 col-md-4 left-col">
+        <div class="search_box row mx-3">
+                        <h3 className='find-title'>Find a bar:</h3>
+                    </div>                 */}
+    {/* <div className='search-cont'> */}
+        
+      {/* </div> */}
+      
+    
 
 
 
@@ -72,7 +79,7 @@ const Profile = () => {
         )}
       </div>
       </div>
-    </div>
+  
   );
 };
 

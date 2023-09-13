@@ -6,8 +6,6 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-import './signup.css';
-
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
@@ -41,11 +39,11 @@ const Signup = () => {
   };
 
   return (
-    <main className="signup-bg">
-      <div className="cont">
-        <div className="login-card">
-        <h4 className="card-head">Sign Up</h4>
-          <div className="card-body">
+    <main className='w-full h-screen relative bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")]'>
+      <div className="m-1 p-0 flex justify-center items-center min-h-screen">
+        <div className="flex flex-col justify-center">
+        <h4 className="text-white bg-green-950 text-4xl font-yellow text-center">Sign Up</h4>
+          <div className="text-white border-2 border-white p-10 backdrop-blur text-center">
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -54,7 +52,7 @@ const Signup = () => {
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
-                  className="form-input"
+                  className="form-input block border-2 border-black m-4"
                   placeholder="Your username"
                   name="username"
                   type="text"
@@ -62,7 +60,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input border-2 border-black block m-4"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -70,7 +68,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input border-2 border-black block m-4"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -78,7 +76,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="the-button"
+                  className="text-white bg-green-700 text-2xl p-2 rounded"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
