@@ -130,7 +130,20 @@ const resolvers = {
         return { location, user };
       }
       throw AuthenticationError;
-    }
+    },
+
+    // comment mutations
+
+    addComment: async (parent, { locationId, comment}, context) => {
+      if (context.user) {
+        return Location.findOneAndUpdate(
+          { _id: locationId },
+          { $addToSet: { comments: comment } },
+          { new: true, runValidators: true}
+        );
+      }
+      throw AuthenticationError;
+    },
   },
 };
 
