@@ -8,6 +8,24 @@ const typeDefs = `
     comments: [Comment]
   }
 
+  type Comment {
+    createdAt: Date
+    commentBody: String
+    username: String
+  }
+
+  type Location {
+    _id: ID
+    createdAt: Date
+    name: String
+    lat: Float
+    lng: Float
+    photo_ref: String
+    description: String
+    username: String
+    comments: [Comment]
+  }
+
   type Auth {
     token: ID!
     profile: Profile
@@ -18,6 +36,9 @@ const typeDefs = `
     profile(profileId: ID!): Profile
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
+    
+    locations: [Location]!
+    locations(locationId: ID!): Location
   }
 
   type Mutation {
@@ -26,8 +47,16 @@ const typeDefs = `
 
     addComment(commentText: String!): Comment
     removeProfile: Profile
+    removeSkill(skill: String!): Profile
+
+    addLocation(name: String!, lat: Float!, lng: Float!, photo_red: String!, description: String!, username: String!): Location
+    removeLocation(locationId: ID!): Location
+
+    addComment(locationId: ID!, comment: Comment! ): Location
+
     removeComment(commentId: ID!): Profile
     
+
   }
 `;
 
