@@ -47,7 +47,7 @@ export const SearchMap = ({
             // add info to infowindow
             const infowindow = new google.maps.InfoWindow({
                 maxWidth: 300,
-                content: `<p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=''></img><button>click here for the full description</button>`,
+                content: `<p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img><button>click here to add location</button>`,
             });
 
             // add infowindow to maker
