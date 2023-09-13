@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Comment = require('./Comment');
 
 const locationSchema = new Schema(
     {
@@ -27,7 +28,14 @@ const locationSchema = new Schema(
             type: String,
             required: true
         },
-        // add once comments model is made
-        // comments: [Comment]
+        comments: [Comment]
+    },
+    {
+        toJSON: {
+            getters: true
+        },
+        id: false
     }
-)
+);
+
+module.exports = locationSchema;
