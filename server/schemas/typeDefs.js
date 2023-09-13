@@ -9,14 +9,14 @@ const typeDefs = `
   }
 
   type Comment {
-    createdAt: Date
+    createdAt: Int
     commentBody: String
     username: String
   }
 
   type Location {
     _id: ID
-    createdAt: Date
+    createdAt: Int
     name: String
     lat: Float
     lng: Float
@@ -38,25 +38,20 @@ const typeDefs = `
     me: Profile
     
     locations: [Location]!
-    locations(locationId: ID!): Location
+    location(locationId: ID!): Location
   }
 
   type Mutation {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addComment(commentText: String!): Comment
     removeProfile: Profile
     removeSkill(skill: String!): Profile
 
     addLocation(name: String!, lat: Float!, lng: Float!, photo_red: String!, description: String!, username: String!): Location
     removeLocation(locationId: ID!): Location
 
-    addComment(locationId: ID!, comment: Comment! ): Location
-
-    removeComment(commentId: ID!): Profile
-    
-
+    addComment(locationId: ID!, comment: [String]! ): Location
   }
 `;
 
