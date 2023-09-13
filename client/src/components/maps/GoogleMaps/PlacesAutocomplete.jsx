@@ -13,7 +13,6 @@ export const PlacesAutocomplete = ({ setSelected, setResult }) => {
     Api.getPlaceInfo(query)
         .then((res) => {
             setResult(res.data);
-            console.log(res.data);
         })
         .catch((err) => console.log(err));
 

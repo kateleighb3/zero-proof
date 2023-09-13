@@ -1,3 +1,4 @@
+// create markers from given location info
 export const addMarkers = ({
     locations,
     map,
@@ -16,6 +17,7 @@ export const addMarkers = ({
         content: `<p><strong>${name}</strong></p><p>Added by: ${user}</p><img src='${img}'></img><button>click here for the full description</button>`,
       });
     
+      // marker shows info when clicked
       google.maps.event.addListener(marker, "click", () => {
         infowindow.open(map, marker);
       });

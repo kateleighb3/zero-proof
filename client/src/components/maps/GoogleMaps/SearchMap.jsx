@@ -11,6 +11,7 @@ export const SearchMap = ({
 }) => {
     // center map on orlando
     const center = useMemo(() => ({ lat: 28.53540855723579, lng: -81.38559605386592 }), []);
+    const zoom = 11;
 
     // search bar and search results
     const [selected, setSelected] = useState(null);
@@ -25,7 +26,7 @@ export const SearchMap = ({
         if(ref.current) {
             const map = new window.google.maps.Map(ref.current, {
                 center: center,
-                zoom: 11,
+                zoom: zoom,
                 mapId,
             });
 
@@ -35,7 +36,6 @@ export const SearchMap = ({
 
             // sets variables if a place is selected
             if(selected){
-                console.log(selected.lat);
                 lat = selected.lat;
                 lng = selected.long;
             }

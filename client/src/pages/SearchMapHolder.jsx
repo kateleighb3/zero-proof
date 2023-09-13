@@ -1,6 +1,8 @@
+// this will be moved so it is part of a page, rather than it's own page!!!
+
 import React from "react";
 
-// import necessary
+// imports all parts of the map
 import {
   SearchMap,
   GoogleMapsWrapper,
@@ -8,6 +10,7 @@ import {
   Layout,
 } from "../components/maps";
 
+// the wrapper is for ease with api calls
 const SearchMapHolder = () => (
   <GoogleMapsWrapper>
     <Layout>

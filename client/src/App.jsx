@@ -5,7 +5,6 @@ import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
 import MainMap from './pages/MainMap';
 import SearchMapHolder from './pages/SearchMapHolder';
-// import SearchMap from './components/maps/GoogleMaps/SearchMap';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +14,6 @@ function App() {
         <Navbar />
         {/* change back */}
         <SearchMapHolder />
-       
       </div>
   )
 }

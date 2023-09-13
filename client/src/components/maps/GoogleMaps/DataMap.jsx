@@ -2,9 +2,10 @@ import { useEffect, useRef } from "react";
 import { addClusters, addMarkers } from "./markers";
 
 // currently centered on orlando
-const DEFAULT_CENTER = { lat: 28.53540855723579, lng: -81.38559605386592 };
-const DEFAULT_ZOOM = 11;
+const center = { lat: 28.53540855723579, lng: -81.38559605386592 };
+const zoom = 11;
 
+// create map using given locations
 export const DataMap = ({
     locations,
     useClusters = true,
@@ -13,12 +14,13 @@ export const DataMap = ({
 }) => {
     const ref = useRef(null);
 
+    // map adjusts as changes are made to it
     useEffect(() => {
         // Display the map
         if (ref.current) {
             const map = new window.google.maps.Map(ref.current, {
-                center: DEFAULT_CENTER,
-                zoom: DEFAULT_ZOOM,
+                center: center,
+                zoom: zoom,
                 mapId,
             });
 
@@ -29,6 +31,7 @@ export const DataMap = ({
         }
     }, [ref, mapId, locations, useClusters]);
 
+    // return the map
     return (
         <div
             className={className}
