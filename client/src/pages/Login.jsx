@@ -43,7 +43,7 @@ const Login = (props) => {
   return (
     <main className='w-full h-screen relative bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")]'>
       {/* <div className=> */}
-     <div className="m-1 p-0 flex justify-center items-center min-h-screen">
+     <div className="m-0 p-0 flex justify-center items-center min-h-screen">
         <div className="flex flex-col justify-center">
           <h4 className="text-white bg-green-950 text-4xl font-yellow text-center">Login</h4>
           <div className="text-white border-2 border-white p-10 backdrop-blur text-center">

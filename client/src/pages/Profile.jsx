@@ -5,8 +5,15 @@ import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import Item from '@mui/material/ListItem';
+
+
 
 import Auth from '../utils/auth';
+
+
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -39,46 +46,26 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="profile-bg"> </div>
-        <div className="contain"> </div>
+      <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+        <div className="m-0 p-0 flex flex-col min-h-screen border-2 border-red"> 
           
+        <Grid container spacing={2}>
+        <Grid item xs={6} md={4}>
+          <Item>xs=6 md=4</Item>
+        </Grid>
+        <Grid item xs={6} md={8}>
+          <Item>xs=6 md=8</Item>
+        </Grid>
+        </Grid>
 
-        {/* <div class="col-6 col-md-4 left-col">
-        <div class="search_box row mx-3">
-                        <h3 className='find-title'>Find a bar:</h3>
-                    </div>                 */}
-    {/* <div className='search-cont'> */}
-        
-      {/* </div> */}
       
     
 
 
-
-          
-          <div className='box-around-boxes'>
-          <div className="a-box">
-          <h2>Viewing your profile.</h2>
-        </div>
-
-        <div className="a-card">
-          <ThoughtList
-            thoughts={user.thoughts}
-            title={`${user.username}'s thoughts...`}
-            showTitle={false}
-            showUsername={false}
-          />
-        </div>
-        {!userParam && (
-          <div
-            className="thought-cont"
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
-            <ThoughtForm />
           </div>
-        )}
       </div>
       </div>
+
   
   );
 };

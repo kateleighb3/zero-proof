@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 
 // import ThoughtList from '../components/ThoughtList';
 // import ThoughtForm from '../components/ThoughtForm';
-import './home.css';
+// import './home.css';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
 
@@ -12,9 +12,9 @@ const Home = () => {
 
   return (
 
-    <div className='background'>
-                <div className="main">
-                    <div className='title'>
+    <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+                <div className="m-0 p-0 flex justify-center items-center min-h-screen">
+                    <div className='text-center'>
                         <h1 className="neonText">Zero</h1><h1 className="neon">Proof</h1>
                     </div>
                 </div>

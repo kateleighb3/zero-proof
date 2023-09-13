@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-
+import Grid from '@mui/material/Grid';
+import Item from '@mui/material/ListItem';
 import Auth from '../../utils/auth';
 
 // import './index.css';
@@ -10,52 +11,47 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="absolute z-10 w-full">
+    <header className="absolute z-10 w-full border-4 border-white">
       {/* <div className="container flex-row justify-space-between-lg justify-center align-center"> */}
-        <div>
+        {/* <div> */}
           {Auth.loggedIn() ? (
             <>
-          <div class="container text-center after-nav">
-            <div class="row">
-                {/* <!-- first column --> */}
-              <div class="col first-col">
-                <ul class="nav">
-                    <li class="nav-item">
-                    <Link className="nav-text" to="/me">
+          <div className="row content-none">
+
+            {/* left col */}
+            <div className="column w-2/6 p-5 float-left text-left">
+              <Link className="nav-text" to="/me">
                 {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
                 Profile
-              </Link>
-              <Link className="nav-text" onClick={logout}>
+                </Link>
+                <Link className="nav-text" onClick={logout}>
                 Logout
-              </Link>
-                    </li>
-                  </ul>
-              </div>
-              {/* <!-- second column --> */}
-              <div class="col">
-                <div class="title">
-                    <h1 class="neonText">Zero</h1><h1 class="neon">Proof</h1>
-                    </div>
-              </div>
-              {/* <!-- third column --> */}
-              <div class="col third-col">
-                <ul class="nav">
-                    <li class="nav-item">
-                    <Link className="nav-text" to="/me">
+                </Link>
+            </div>
+            {/* middle col */}
+            <div className="column w-2/6 p-5 float-left text-center">
+            <h1 class="neonText">Zero</h1><h1 class="neon">Proof</h1>
+            </div>
+            {/* right col */}
+            <div className="column w-2/6 p-5 float-left text-right">
+            <Link className="nav-text" to="/me">
                  Recipes
               </Link>
               <Link className="nav-text" onClick={logout}>
                 Favorites
               </Link>
-                    </li>
-                  </ul>
-              </div>
+
             </div>
           </div>
+
+
+
+        
         
               
             </>
           ) : (
+            
             <>
               <Link className="nav-text" to="/login">
                 Login
@@ -65,7 +61,7 @@ const Header = () => {
               </Link>
             </>
           )}
-        </div>
+        {/* </div> */}
       {/* </div> */}
     </header>
   );
