@@ -25,6 +25,18 @@ const profileSchema = new Schema({
       trim: true,
     },
   ],
+  locations: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'location'
+    }
+  ],
+  favorites: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'location'
+    }
+  ]
 });
 
 // set up pre-save middleware to create password

@@ -29,13 +29,10 @@ const locationSchema = new Schema(
             required: true
         },
         comments: [Comment]
-    },
-    {
-        toJSON: {
-            getters: true
-        },
-        id: false
     }
 );
 
-module.exports = locationSchema;
+// initialize model
+const Location = model('location', locationSchema);
+
+module.exports = Location;
