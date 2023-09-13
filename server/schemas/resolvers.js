@@ -1,4 +1,4 @@
-const { Profile, Location } = require('../models');
+const { Profile, Location, Comment } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -68,9 +68,12 @@ const resolvers = {
 
     // location mutations
 
-    addLocation: async (parent, {name, lat, lng, photo_ref, description, username}) => {
-      const location = await Location.create({name, lat, lng, photo_ref, description, username});
-      return location;
+    addLocation: async (parent, {name, lat, lng, photo_ref, description, username}, context) => {
+      if(context.user) {
+        const location = await Location.create({name, lat, lng, photo_ref, description, username});
+        return location;
+      }
+      throw AuthenticationError;
     },
 
     // user can only remove location if it is theirs
@@ -84,7 +87,7 @@ const resolvers = {
         }
 
         // get current user
-        const user = Profile.findOneAndUpdate(
+        const user = await Profile.findOneAndUpdate(
           {_id: context.user._id},
           { $pull: { locations: locationId }},
           {new: true}
@@ -103,13 +106,17 @@ const resolvers = {
 
     // comment mutations
 
-    addComment: async (parent, { locationId, comment}, context) => {
+    addComment: async (parent, { locationId, commentBody, username}, context) => {
       if (context.user) {
-        return Location.findOneAndUpdate(
+        const comment = await Comment.create({commentBody, username})
+
+        const location = await Location.findOneAndUpdate(
           { _id: locationId },
-          { $addToSet: { comments: comment } },
+          { $addToSet: { comments: comment._id } },
           { new: true, runValidators: true}
         );
+
+        return { comment, location };
       }
       throw AuthenticationError;
     },

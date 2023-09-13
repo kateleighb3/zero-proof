@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const Comment = require('./Comment');
+// const Comment = require('./Comment');
 
 const locationSchema = new Schema(
     {
@@ -28,7 +28,12 @@ const locationSchema = new Schema(
             type: String,
             required: true
         },
-        comments: [Comment]
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'comment'
+            }
+        ]
     }
 );
 

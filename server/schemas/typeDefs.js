@@ -51,7 +51,7 @@ const typeDefs = `
     addLocation(name: String!, lat: Float!, lng: Float!, photo_red: String!, description: String!, username: String!): Location
     removeLocation(locationId: ID!): Location
 
-    addComment(locationId: ID!, comment: [String]! ): Location
+    addComment(locationId: ID!, commentBody: String!, username: String! ): Location
   }
 `;
 

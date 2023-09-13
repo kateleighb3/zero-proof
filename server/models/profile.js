@@ -19,12 +19,6 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
   locations: [
     {
         type: Schema.Types.ObjectId,
