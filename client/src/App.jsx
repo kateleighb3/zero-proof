@@ -42,7 +42,7 @@ function App() {
         <div>
           <Outlet />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </ApolloProvider>
   );

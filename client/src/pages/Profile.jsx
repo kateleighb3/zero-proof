@@ -51,7 +51,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+      <div className='bg-cover bg-[url("./assets/pexels-rachel-claire-5863518.jpg")] relative h-screen w-full m-0 p-0'>
         <div className="m-0 p-0 flex justify-center items-center min-h-screen"> 
           
         {/* <div class="row content-none"> */}
@@ -79,7 +79,7 @@ const Profile = () => {
           </div>
 
           {/* second col */}
-          <div class="column m-5 p-10 backdrop-blur float-left w-3/5 border-2 border-white">
+          <div class="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
             Place map here
             </div>
           
