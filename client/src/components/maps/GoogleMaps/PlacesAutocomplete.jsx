@@ -3,9 +3,18 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import Api from "../../utils/Api"
 
-export const PlacesAutocomplete = ({ setSelected }) => {
+export const PlacesAutocomplete = ({ setSelected, setResult }) => {
     const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
+
+    const searchPlace = (query) =>
+    Api.getPlaceInfo(query)
+        .then((res) => {
+            setResult(res.data);
+            console.log(res.data);
+        })
+        .catch((err) => console.log(err));
 
     const handleSelect = async (location) => {
         setValue(location, false);
@@ -19,6 +28,9 @@ export const PlacesAutocomplete = ({ setSelected }) => {
         console.log(results[0]);
 
         setSelected({ lat:lat, long:lng, place_id: results[0].place_id });
+
+        // call to api for place info
+        searchPlace(results[0].place_id);
     };
 
     return (

@@ -12,6 +12,7 @@ export const SearchMap = ({
 }) => {
     const center = useMemo(() => ({ lat: 28.53540855723579, lng: -81.38559605386592 }), []);
     const [selected, setSelected] = useState(null);
+    const [result, setResult] = useState({});
 
     const ref = useRef(null);
 
@@ -49,7 +50,7 @@ export const SearchMap = ({
     return (
         <>
             <div className="places-container">
-                <PlacesAutocomplete setSelected={setSelected} />
+                <PlacesAutocomplete setSelected={setSelected} setResult={setResult} />
             </div>
             <div 
                 className={className}

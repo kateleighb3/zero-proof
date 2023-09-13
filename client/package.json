@@ -19,6 +19,7 @@
     "@react-google-maps/api": "^2.7.0",
     "@reach/combobox": "^0.16.5",
     "styled-components": "^5.3.10",
+    "axios": "^1.4.0",
     "@apollo/client": "^3.7.14",
     "bootstrap": "^5.3.1",
     "graphql": "^16.6.0",
