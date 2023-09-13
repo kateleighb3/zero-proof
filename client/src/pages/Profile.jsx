@@ -51,7 +51,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className='bg-cover bg-[url("./assets/pexels-rachel-claire-5863518.jpg")] relative h-screen w-full m-0 p-0'>
+      <div className='bg-cover bg-[url("./assets/palm-2.jpg")] relative h-screen w-full m-0 p-0'>
         <div className="m-0 p-0 flex justify-center items-center min-h-screen"> 
           
         {/* <div class="row content-none"> */}

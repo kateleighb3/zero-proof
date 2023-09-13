@@ -8,7 +8,9 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
+import Favorites from './pages/Favorites';
 import Error from './pages/Error';
+import Recipes from './pages/Recipes';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,17 @@ const router = createBrowserRouter([
       }, {
         path: '/me',
         element: <Profile />
-      }, {
+      }, 
+      {
+        path: '/favorites',
+        element: <Favorites />
+      },
+      
+      {
+        path: '/recipes',
+        element: <Recipes />
+      },
+      {
         path: '/profiles/:profileId',
         element: <Profile />
       }, {

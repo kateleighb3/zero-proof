@@ -37,13 +37,12 @@ const Header = () => {
             </div>
             {/* right col */}
             <div className="column w-2/6 p-5 float-left text-right">
-            <Link className="nav-text" to="/me">
+            <Link className="nav-text" to="/recipes">
                  Recipes
               </Link>
-              <Link className="nav-text" onClick={logout}>
+              <Link className="nav-text" to="/favorites">
                 Favorites
               </Link>
-
             </div>
           </div>
 
