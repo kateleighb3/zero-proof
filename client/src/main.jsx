@@ -10,10 +10,10 @@ import Error from './pages/Error';
 import MainMap from './pages/MainMap';
 import SearchMapHolder from './pages/SearchMapHolder';
 
-// not currenly created
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+// // not currenly created
+// import Profile from './pages/Profile';
+// import Signup from './pages/Signup';
+// import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
