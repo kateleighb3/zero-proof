@@ -3,7 +3,7 @@ export const addMarkers = ({
     locations,
     map,
   }) =>
-    locations.map(({ lat, lng, name, user, img }) => {
+    locations.map(({ _id, name, lat, lng, photo_ref, username  }) => {
       const marker = new google.maps.Marker({
         position: { lat, lng },
         map,
@@ -14,7 +14,7 @@ export const addMarkers = ({
         // this info will actually be saved in the database instead being manually added
         // along with its lat and long
         maxWidth: 300,
-        content: `<p><strong>${name}</strong></p><p>Added by: ${user}</p><img src='${img}'></img><button>click here for the full description</button>`,
+        content: `<p><strong>${name}</strong></p><p>Added by: ${username}</p><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo_ref}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'></img><button key=${_id}>click here for the full description</button>`,
       });
     
       // marker shows info when clicked

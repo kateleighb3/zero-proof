@@ -6,17 +6,26 @@ import React from "react";
 import {
   DataMap,
   GoogleMapsWrapper,
-  LOCATIONS,
+  // LOCATIONS,
   Layout,
 } from "../components/maps";
 
+const { loading, data } = useQuery(QUERY_LOCATIONS);
+  const locations = data?.locations || [];
+
 // the wrapper is for ease with api calls
 const MainMap = () => (
+  <>
+  {loading ? (
+    <div>Loading...</div>
+  ) : (
   <GoogleMapsWrapper>
     <Layout>
-      <DataMap mapId="map_id" locations={LOCATIONS} />
+      <DataMap mapId="map_id" locations={locations} />
     </Layout>
   </GoogleMapsWrapper>
+  )}
+  </>
 );
 
 export default MainMap;
