@@ -19,7 +19,8 @@ import {
 const MainMap = ({
   latlng,
   content,
-  selected
+  selected,
+  result
 }) => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
@@ -31,7 +32,7 @@ const MainMap = ({
   ) : (
   
     <Layout>
-      <DataMap selected={selected} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
+      <DataMap className={"text-black"} result={result} selected={selected} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
     </Layout>
   // </GoogleMapsWrapper>
   )}

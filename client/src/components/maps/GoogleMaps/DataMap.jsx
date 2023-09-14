@@ -13,7 +13,8 @@ export const DataMap = ({
     className,
     latlng,
     content,
-    selected
+    selected,
+    result
 }) => {
     const ref = useRef(null);
 
@@ -32,24 +33,36 @@ export const DataMap = ({
                 ? addClusters({ locations, map })
                 : addMarkers({ locations, map });
 
-            // if a location is selected, a marker will appear for it on the map
-            const marker = new google.maps.Marker({
-                position: selected ? latlng : null,
-                map: map
+            let addmarker = true;
+
+            // check for if location is currenlty in db
+            locations.map(({ lat, lng }) => {
+                if (lat === latlng.lat && lng === latlng.lng) {
+                    addmarker = false;
+                }
             });
 
-            // add info to infowindow
-            const infowindow = new google.maps.InfoWindow({
-                maxWidth: 300,
-                content: content,
-            });
+            // if there is not already a location with this
+            if (addmarker) {
+                // if a location is selected, a marker will appear for it on the map
+                const marker = new google.maps.Marker({
+                    position: selected ? latlng : null,
+                    map: map
+                });
 
-            // add infowindow to marker
-            google.maps.event.addListener(marker, "click", () => {
-                infowindow.open(map, marker);
-            });
+                // add info to infowindow
+                const infowindow = new google.maps.InfoWindow({
+                    maxWidth: 300,
+                    content: `<div className="m-0 p-0 flex justify-center items-center"><p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img></div>`,
+                });
+
+                // add infowindow to marker
+                google.maps.event.addListener(marker, "click", () => {
+                    infowindow.open(map, marker);
+                });
+            }
         }
-    }, [ref, mapId, locations, useClusters, selected]);
+    }, [ref, mapId, locations, useClusters, selected, result]);
 
     // return the map
     return (
