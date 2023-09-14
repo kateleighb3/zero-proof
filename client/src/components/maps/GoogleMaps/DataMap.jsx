@@ -53,8 +53,11 @@ export const DataMap = ({
                 // add info to infowindow
                 const infowindow = new google.maps.InfoWindow({
                     maxWidth: 300,
-                    content: `<div className="m-0 p-0 flex justify-center items-center"><p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img></div>`,
+                    content: `<div className="m-0 p-0 flex justify-center items-center"><p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img><p>Location has not been added yet</p><button className="button">Click Here to Add Location</button></div>`,
                 });
+
+                // info window automatically pops up
+                infowindow.open(map, marker);
 
                 // add infowindow to marker
                 google.maps.event.addListener(marker, "click", () => {
