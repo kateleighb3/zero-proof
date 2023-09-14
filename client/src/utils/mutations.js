@@ -20,16 +20,6 @@ export const ADD_USER = gql`
       user {
         _id
         username
-export const ADD_PROFILE = gql`
-  mutation addProfile($name: String!, $email: String!, $password: String!) {
-    addProfile(name: $name, email: $email, password: $password) {
-      token
-      profile {
-        _id
-        name
-      }
-    }
-  }
 `;
 
 
@@ -44,6 +34,7 @@ export const ADD_THOUGHT = gql`
         _id
         commentText
       }
+      `;
 
 export const ADD_LOCATION = gql`
   mutation addLocation($name: String!, $lat: Float!, $lng: Float!, $photo_ref: String!, $description: String!, $username: String!) {
