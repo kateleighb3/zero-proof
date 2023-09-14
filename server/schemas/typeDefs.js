@@ -7,7 +7,6 @@ const typeDefs = `
     password: String
     thoughts: [Thought]!
     locations: [Location]!
-    favortites: [Location]!
   }
 
   type Thought {
@@ -49,7 +48,7 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    user(username: String!): User
+    user(profileId: ID!): User
     me: User
     
     thoughts(username: String): [Thought]

@@ -31,12 +31,12 @@ const userSchema = new Schema({
         ref: 'location'
     }
   ],
-  favorites: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'location'
-    }
-  ]
+  // favorites: [
+  //   {
+  //       type: Schema.Types.ObjectId,
+  //       ref: 'location'
+  //   }
+  // ]
 });
 
 userSchema.pre('save', async function (next) {
