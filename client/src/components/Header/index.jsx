@@ -22,7 +22,7 @@ const Header = () => {
             <div className="column w-2/6 p-5 float-left text-left">
               <Link className="nav-text" to="/me">
                 {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
-                Profile
+                Find A Bar
                 </Link>
                 <Link className="nav-text" onClick={logout}>
                 Logout
@@ -37,9 +37,12 @@ const Header = () => {
             </div>
             {/* right col */}
             <div className="column w-2/6 p-5 float-left text-right">
-            <Link className="nav-text" to="/recipes">
-                 Recipes
+            <Link className="nav-text" to="/drinks">
+                 Drinks
               </Link>
+            {/* <Link className="nav-text" to="/recipes">
+                 Mocktails
+              </Link> */}
               <Link className="nav-text" to="/favorites">
                 Favorites
               </Link>

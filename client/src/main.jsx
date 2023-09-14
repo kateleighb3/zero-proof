@@ -11,6 +11,9 @@ import Profile from './pages/Profile';
 import Favorites from './pages/Favorites';
 import Error from './pages/Error';
 import Recipes from './pages/Recipes';
+import Drinks from './pages/Drinks';
+import Spirits from './pages/Spirits';
+import Beer from './pages/Beer';
 
 const router = createBrowserRouter([
   {
@@ -35,10 +38,25 @@ const router = createBrowserRouter([
         path: '/favorites',
         element: <Favorites />
       },
+
+      {
+        path: '/drinks',
+        element: <Drinks />
+      },
       
       {
         path: '/recipes',
         element: <Recipes />
+      },
+
+      {
+        path: '/spirits',
+        element: <Spirits />
+      },
+
+      {
+        path: '/beer',
+        element: <Beer />
       },
       {
         path: '/profiles/:profileId',
