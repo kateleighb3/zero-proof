@@ -64,7 +64,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
 
     removeUser: User
-    removeSkill(skill: String!): Profile
+    removeSkill(skill: String!): User
 
     addLocation(name: String!, lat: Float!, lng: Float!, photo_ref: String!, description: String!, username: String!): Location
     removeLocation(locationId: ID!): Location

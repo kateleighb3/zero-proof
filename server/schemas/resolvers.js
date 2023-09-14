@@ -8,7 +8,7 @@ const resolvers = {
       return User.find().populate('thoughts');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('thoughts').populate('locations').populate('favorties');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -125,7 +125,6 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    },
 
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeUser: async (parent, args, context) => {
@@ -190,7 +189,8 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-  };
+  }
+};
 
 module.exports = resolvers;
 

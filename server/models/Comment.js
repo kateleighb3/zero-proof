@@ -6,14 +6,14 @@ const commentSchema = new Schema(
             type: Date,
             default: Date.now
         },
-        commentBody: {
+        commentText: {
             type: String,
             required: true
         },
         username: {
             type: String,
             required: true
-        }
+        },
     },
     {
         toJSON: {
@@ -23,4 +23,7 @@ const commentSchema = new Schema(
     }
 );
 
-module.exports = commentSchema;
+// initialize model
+const Comment = model('comment', commentSchema);
+
+module.exports = Comment;
