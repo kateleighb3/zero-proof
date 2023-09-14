@@ -1,17 +1,14 @@
 {
   "name": "client",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.0.15",
     "@googlemaps/react-wrapper": "^1.1.35",
@@ -21,11 +18,15 @@
     "styled-components": "^5.3.10",
     "axios": "^1.4.0",
     "@apollo/client": "^3.7.14",
-    "bootstrap": "^5.3.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.8",
+    "@mui/material": "^5.14.8",
+    "autoprefixer": "^10.4.15",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
+    "postcss": "^8.4.29",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2"
   },
@@ -39,6 +40,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "tailwindcss": "^3.3.3",
     "vite": "^4.3.9"
   }
 }

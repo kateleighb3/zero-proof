@@ -3,17 +3,22 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom/dist'
 import './index.css'
 
 import App from './App.jsx'
-import Home from './components/home/Home';
+
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import SingleThought from './pages/SingleThought';
+import Profile from './pages/Profile';
+import Favorites from './pages/Favorites';
 import Error from './pages/Error';
+import Recipes from './pages/Recipes';
+import Drinks from './pages/Drinks';
+import Spirits from './pages/Spirits';
+import Beer from './pages/Beer';
 
 // for testing the maps
 import MainMap from './pages/MainMap';
 import SearchMapHolder from './pages/SearchMapHolder';
-
-// // not currenly created
-// import Profile from './pages/Profile';
-// import Signup from './pages/Signup';
-// import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +29,47 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      }, {
+        path: '/login',
+        element: <Login />
+      }, {
+        path: '/signup',
+        element: <Signup />
+      }, {
+        path: '/me',
+        element: <Profile />
+      }, 
+      {
+        path: '/favorites',
+        element: <Favorites />
+      },
+
+      {
+        path: '/drinks',
+        element: <Drinks />
+      },
+      
+      {
+        path: '/recipes',
+        element: <Recipes />
+      },
+
+      {
+        path: '/spirits',
+        element: <Spirits />
+      },
+
+      {
+        path: '/beer',
+        element: <Beer />
+      },
+      {
+        path: '/profiles/:profileId',
+        element: <Profile />
+      }, {
+        path: '/thoughts/:thoughtId',
+        element: <SingleThought />
+
       }, 
       {
         path: '/mainmap',
@@ -33,19 +79,7 @@ const router = createBrowserRouter([
         path: '/searchmap',
         element: <SearchMapHolder />
       }
-      // {
-      //   path: '/login',
-      //   element: <Login />
-      // }, {
-      //   path: '/signup',
-      //   element: <Signup />
-      // }, {
-      //   path: '/me',
-      //   element: <Profile />
-      // }, {
-      //   path: '/profiles/:profileId',
-      //   element: <Profile />
-      // }
+     
     ]
   }
 ])
