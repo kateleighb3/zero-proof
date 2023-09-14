@@ -22,7 +22,7 @@ const ThoughtList = ({
             <h4 className="bg-green-950 bg-opacity-50 text-white p-2 m-0">
               {showUsername ? (
                 <Link
-                  className="text-white text-2xl"
+                  className="text-white font-yellow text-2xl"
                   to={`/profiles/${thought.thoughtAuthor}`}
                 >
                   {thought.thoughtAuthor} <br />

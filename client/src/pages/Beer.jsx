@@ -14,19 +14,22 @@ import { QUERY_THOUGHTS } from '../utils/queries';
 
 
 const Beer = () => {
-
+  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const thoughts = data?.thoughts || [];
         
     return (
-            <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/pexels-rachel-claire-5863518.jpg")]'>
+            <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/tikibw.jpg")]'>
               {/* <div className=> */}
               <div className="row relative w-full h-36"></div>
+              {/* <div className="flex ml-40 mr-40"> */}
               <h2 className="feature-sign p-4 mt-2">Featured</h2>
+              {/* </div> */}
              <div className="mt-8 p-0 flex justify-center items-center">
                 <div className="flex flex-col justify-center">
                 <div className='grid grid-cols-3 gap-12'>
                     
                     <Link to='/'>
-                    <div className='backdrop-blur'>
+                    <div className='mb-8 backdrop-blur'>
                     <h4 className="title-sign">Brooklyn Effects</h4>
                   <div className="text-white p-8 text-center">
                     <img src ={brooklyn} alt="brooklyn effects na beer" className="w-72 h-80" />
@@ -59,6 +62,16 @@ const Beer = () => {
               </div>
               <ThoughtForm />
               {/* </div> */}
+              <div className="col-12 col-md-8 mb-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ThoughtList
+              thoughts={thoughts}
+              // title="Reviews..."
+            />
+          )}
+        </div>
             </main>
           );
         };
