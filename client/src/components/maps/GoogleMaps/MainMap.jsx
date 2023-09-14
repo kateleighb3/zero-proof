@@ -25,11 +25,11 @@ const MainMap = () => {
   {loading ? (
     <div>Loading...</div>
   ) : (
-  <GoogleMapsWrapper>
+  
     <Layout>
       <DataMap mapId="map_id" locations={locations} />
     </Layout>
-  </GoogleMapsWrapper>
+  // </GoogleMapsWrapper>
   )}
   </>
 );
