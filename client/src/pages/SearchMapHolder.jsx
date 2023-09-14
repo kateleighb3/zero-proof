@@ -6,7 +6,7 @@ import React from "react";
 import {
   SearchMap,
   GoogleMapsWrapper,
-  LOCATIONS,
+  // LOCATIONS,
   Layout,
 } from "../components/maps";
 

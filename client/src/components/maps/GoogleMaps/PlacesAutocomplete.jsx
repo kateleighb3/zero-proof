@@ -36,7 +36,7 @@ export const PlacesAutocomplete = ({ setSelected, setResult }) => {
         // empty the search bar
         setValue('');
     };
-
+    
     // returns the search bar with ability to show suggestions by auto complete
     return (
         <Combobox onSelect={handleSelect}>
