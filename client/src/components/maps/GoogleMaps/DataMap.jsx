@@ -36,11 +36,12 @@ export const DataMap = ({
             let addmarker = true;
 
             // check for if location is currenlty in db
-            locations.map(({ lat, lng }) => {
-                if (lat === latlng.lat && lng === latlng.lng) {
-                    addmarker = false;
-                }
-            });
+            if (locations != [])
+                {locations.map((location) => {
+                    if (location && selected && location.lat === latlng.lat && location.lng === latlng.lng) {
+                        addmarker = false;
+                    }
+                });}
 
             // if there is not already a location with this
             if (addmarker) {
@@ -63,6 +64,10 @@ export const DataMap = ({
                 google.maps.event.addListener(marker, "click", () => {
                     infowindow.open(map, marker);
                 });
+            }
+            else {
+                // make searched location infomap pop up
+                
             }
         }
     }, [ref, mapId, locations, useClusters, selected, result]);

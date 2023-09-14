@@ -25,6 +25,9 @@ const MainMap = ({
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
 
+  
+  console.log(locations);
+
   return (
   <>
   {loading ? (
@@ -34,7 +37,6 @@ const MainMap = ({
     <Layout>
       <DataMap className={"text-black"} result={result} selected={selected} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
     </Layout>
-  // </GoogleMapsWrapper>
   )}
   </>
 );
