@@ -11,6 +11,9 @@ export const DataMap = ({
     useClusters = true,
     mapId,
     className,
+    latlng,
+    content,
+    selected
 }) => {
     const ref = useRef(null);
 
@@ -28,8 +31,25 @@ export const DataMap = ({
             useClusters
                 ? addClusters({ locations, map })
                 : addMarkers({ locations, map });
+
+            // if a location is selected, a marker will appear for it on the map
+            const marker = new google.maps.Marker({
+                position: selected ? latlng : null,
+                map: map
+            });
+
+            // add info to infowindow
+            const infowindow = new google.maps.InfoWindow({
+                maxWidth: 300,
+                content: content,
+            });
+
+            // add infowindow to marker
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.open(map, marker);
+            });
         }
-    }, [ref, mapId, locations, useClusters]);
+    }, [ref, mapId, locations, useClusters, selected]);
 
     // return the map
     return (

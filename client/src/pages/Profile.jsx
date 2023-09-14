@@ -125,7 +125,7 @@ const Profile = () => {
 
           {/* second col */}
           <div className="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
-            <MainMap latlng ={selected ? {lat, lng} : null} content={`<p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img>`}/>
+            <MainMap selected={selected} latlng ={selected ? {lat, lng} : null} content={`<p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img>`}/>
           </div>
         </div>
       </div>

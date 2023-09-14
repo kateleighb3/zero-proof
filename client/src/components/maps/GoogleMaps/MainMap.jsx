@@ -16,7 +16,11 @@ import {
 
 
 // the wrapper is for ease with api calls
-const MainMap = () => {
+const MainMap = ({
+  latlng,
+  content,
+  selected
+}) => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
 
@@ -27,7 +31,7 @@ const MainMap = () => {
   ) : (
   
     <Layout>
-      <DataMap mapId="map_id" locations={locations} />
+      <DataMap selected={selected} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
     </Layout>
   // </GoogleMapsWrapper>
   )}
