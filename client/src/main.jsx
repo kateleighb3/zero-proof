@@ -17,7 +17,7 @@ import Spirits from './pages/Spirits';
 import Beer from './pages/Beer';
 
 // for testing the maps
-import MainMap from './pages/MainMap';
+// import MainMap from './pages/MainMap';
 import SearchMapHolder from './pages/SearchMapHolder';
 
 const router = createBrowserRouter([
@@ -71,10 +71,10 @@ const router = createBrowserRouter([
         element: <SingleThought />
 
       }, 
-      {
-        path: '/mainmap',
-        element: <MainMap />
-      },
+      // {
+      //   path: '/mainmap',
+      //   element: <MainMap />
+      // },
       {
         path: '/searchmap',
         element: <SearchMapHolder />

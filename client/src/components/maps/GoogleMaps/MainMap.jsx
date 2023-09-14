@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 
 import React from "react";
 
-import { QUERY_LOCATIONS } from "../utils/queries";
+import { QUERY_LOCATIONS } from "../../../utils/queries";
 
 // imports all parts that make up the map
 import {
@@ -11,7 +11,7 @@ import {
   GoogleMapsWrapper,
   // LOCATIONS,
   Layout,
-} from "../components/maps";
+} from "../";
 
 
 

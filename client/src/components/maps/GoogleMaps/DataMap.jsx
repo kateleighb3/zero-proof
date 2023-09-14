@@ -36,7 +36,7 @@ export const DataMap = ({
         <div
             className={className}
             ref={ref}
-            style={{ width: "1000px", height: "700px" }}
+            style={{ width: "500px", height: "400px" }}
         />
     );
 };
