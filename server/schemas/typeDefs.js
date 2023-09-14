@@ -18,20 +18,20 @@ const typeDefs = `
   }
 
   type Reply {
-    createdAt: Int
+    createdAt: String
     commentBody: String
     username: String
   }
 
   type Comment {
-    createdAt: Int
+    createdAt: String
     commentBody: String
     username: String
   }
 
   type Location {
     _id: ID
-    createdAt: Int
+    createdAt: String
     name: String
     lat: Float
     lng: Float
