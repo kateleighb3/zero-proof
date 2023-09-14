@@ -32,7 +32,7 @@ const Header = () => {
             <div className="column w-2/6 p-5 float-left text-center">
             
             <Link to="/">
-            <h1 class="neonText">Zero</h1><h1 class="neon">Proof</h1>
+            <h1 className="neonText">Zero</h1><h1 className="neon">Proof</h1>
             </Link>
             </div>
             {/* right col */}

@@ -18,17 +18,20 @@ import Auth from '../utils/auth';
 
 
 const Profile = () => {
-  const { username: userParam } = useParams();
+  const { profileId } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  });
+  const { loading, data } = useQuery(
+    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
+    {
+      variables: { profileId: profileId },
+    }
+  );
 
   const user = data?.me || data?.user || {};
   if (
     Auth.loggedIn() && 
     /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username, and compare it to the userParam variable */
-    Auth.getProfile().authenticatedPerson.username === userParam
+    Auth.getProfile().authenticatedPerson._id === profileId
   ) {
     return <Navigate to="/me" />;
   }
@@ -56,7 +59,7 @@ const Profile = () => {
           
         {/* <div class="row content-none"> */}
         {/* first col */}
-          <div class="column backdrop-blur m-5 p-10 float-left w-2/5 border-2 border-white">
+          <div className="column backdrop-blur m-5 p-10 float-left w-2/5 border-2 border-white">
           <h3 className="font-sans text-2xl text-white">Find a bar:</h3>
 
           <form>
@@ -79,7 +82,7 @@ const Profile = () => {
           </div>
 
           {/* second col */}
-          <div class="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
+          <div className="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
             Place map here
             </div>
           
