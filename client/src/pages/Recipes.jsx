@@ -13,7 +13,6 @@ import RecipeItem from '../components/RecipeItem';
 
 const Recipes = () => {
 
-        
     return (
     <div className='bg-cover bg-fixed bg-[url("./assets/palm-1.jpg")] relative min-h-screen w-full m-0 p-0'>
         <div className="row relative w-full h-28"></div>

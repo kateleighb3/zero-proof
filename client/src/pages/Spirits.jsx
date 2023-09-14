@@ -18,17 +18,17 @@ const Spirits = () => {
   const thoughts = data?.thoughts || [];
         
     return (
-          <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/pexels-rachel-claire-5863518.jpg")]'>
+          <main className='m-0 p-0 w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/tikistatue-2.jpg")]'>
               {/* <div class="bg-repeat-y w-full bg-cover" style="background-image: url('./assets)"> */}
             <div className="row relative w-full h-36 "></div>
-              {/* <h2 className="feature-sign p-4 mt-2">Featured</h2> */}
+              <h2 className="feature-sign p-4 mt-2">Featured</h2>
              <div className="mt-8 p-0 flex justify-center items-center">
                 <div className="flex flex-col justify-center">
                   <div className='grid grid-cols-3 gap-12'>
                     
                 <Link to='/'>
-                    <div className='backdrop-blur'>
-                    <h4 className="title-sign">Brooklyn Effects</h4>
+                    <div className='mb-8 backdrop-blur'>
+                    <h4 className="title-sign">Seedlip</h4>
                   <div className="text-white p-8 text-center">
                     <img src ={seed} alt="brooklyn effects na beer" className="w-72 h-80" />
                   </div>
@@ -37,7 +37,7 @@ const Spirits = () => {
         
                   <Link to='/'>
                   <div className='backdrop-blur'>
-                    <h4 className="title-sign">Athletic Brewing</h4>
+                    <h4 className="title-sign">Curious Elixir No 2</h4>
                   <div className="text-white p-8 text-center">
                     <img src ={curious} alt="brooklyn effects na beer" className="w-72 h-80" />
                   </div>
@@ -46,7 +46,7 @@ const Spirits = () => {
         
                   <Link to='/'>
                   <div className='backdrop-blur'>
-                    <h4 className="title-sign">Lagunitas Hoppy Refresher</h4>
+                    <h4 className="title-sign">Pathfinder</h4>
                   <div className="text-white p-8 text-center">
                     <img src ={path} alt="brooklyn effects na beer" className="w-72 h-80" />
                   </div>
@@ -70,7 +70,7 @@ const Spirits = () => {
           ) : (
             <ThoughtList
               thoughts={thoughts}
-              title="Reviews..."
+              // title="Reviews..."
             />
           )}
         </div>
