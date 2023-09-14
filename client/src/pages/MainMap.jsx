@@ -1,6 +1,9 @@
 // this will be moved so it is part of a page, rather than it's own page!!!
+import { useQuery } from "@apollo/client";
 
 import React from "react";
+
+import { QUERY_LOCATIONS } from "../utils/queries";
 
 // imports all parts that make up the map
 import {
