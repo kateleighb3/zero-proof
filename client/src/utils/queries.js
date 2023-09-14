@@ -112,4 +112,4 @@ export const QUERY_SINGLE_LOCATION = gql`
       comments
     }
   }
-`
+`;
