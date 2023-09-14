@@ -11,12 +11,16 @@ export const QUERY_USER = gql`
         thoughtText
         createdAt
       }
-export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
-      _id
-      name
-      locations
+      locations {
+        _id
+        createdAt
+        name
+        lat
+        lng
+        photo_ref
+        description
+        username
+      }
     }
   }
 `;
@@ -28,16 +32,9 @@ export const QUERY_THOUGHTS = gql`
       thoughtText
       thoughtAuthor
       createdAt
-
-export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
-      _id
-      name
-      locations
     }
   }
-`;
+      `;
 
 
 export const QUERY_SINGLE_THOUGHT = gql`
@@ -53,19 +50,9 @@ export const QUERY_SINGLE_THOUGHT = gql`
         commentAuthor
         createdAt
       }
-
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      name
-      locations
-      favorites
-
     }
   }
-`;
-
+      `;
 
 export const QUERY_ME = gql`
   query me {
@@ -78,6 +65,26 @@ export const QUERY_ME = gql`
         thoughtText
         thoughtAuthor
         createdAt
+      }
+      locations {
+        _id
+        createdAt
+        name
+        lat
+        lng
+        photo_ref
+        description
+        username
+      }
+      favorites {
+        _id
+        createdAt
+        name
+        lat
+        lng
+        photo_ref
+        description
+        username
       }
     }
   }

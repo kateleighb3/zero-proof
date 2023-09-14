@@ -13,11 +13,14 @@ import {
   Layout,
 } from "../components/maps";
 
-const { loading, data } = useQuery(QUERY_LOCATIONS);
-  const locations = data?.locations || [];
+
 
 // the wrapper is for ease with api calls
-const MainMap = () => (
+const MainMap = () => {
+  const { loading, data } = useQuery(QUERY_LOCATIONS);
+  const locations = data?.locations || [];
+
+  return (
   <>
   {loading ? (
     <div>Loading...</div>
@@ -30,5 +33,6 @@ const MainMap = () => (
   )}
   </>
 );
+}
 
 export default MainMap;

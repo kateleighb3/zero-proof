@@ -6,14 +6,14 @@ const commentSchema = new Schema(
             type: Date,
             default: Date.now
         },
-        commentBody: {
+        commentText: {
             type: String,
             required: true
         },
         username: {
             type: String,
             required: true
-        }
+        },
     },
     {
         toJSON: {
