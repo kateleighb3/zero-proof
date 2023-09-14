@@ -21,6 +21,8 @@ export const QUERY_USER = gql`
         description
         username
       }
+    }
+  }
 `;
 
 export const QUERY_THOUGHTS = gql`
@@ -30,6 +32,8 @@ export const QUERY_THOUGHTS = gql`
       thoughtText
       thoughtAuthor
       createdAt
+    }
+  }
       `;
 
 
@@ -46,6 +50,8 @@ export const QUERY_SINGLE_THOUGHT = gql`
         commentAuthor
         createdAt
       }
+    }
+  }
       `;
 
 export const QUERY_ME = gql`

@@ -20,6 +20,9 @@ export const ADD_USER = gql`
       user {
         _id
         username
+      }
+    }
+  }
 `;
 
 
@@ -34,6 +37,8 @@ export const ADD_THOUGHT = gql`
         _id
         commentText
       }
+    }
+  }
       `;
 
 export const ADD_LOCATION = gql`
@@ -47,7 +52,6 @@ export const ADD_LOCATION = gql`
       photo_ref
       description
       username
-
     }
   }
 `;
