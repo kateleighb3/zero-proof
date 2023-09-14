@@ -25,9 +25,6 @@ const MainMap = ({
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
 
-  
-  console.log(locations);
-
   return (
   <>
   {loading ? (

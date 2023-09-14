@@ -40,6 +40,20 @@ export const DataMap = ({
                 {locations.map((location) => {
                     if (location && selected && location.lat === latlng.lat && location.lng === latlng.lng) {
                         addmarker = false;
+
+                        // create new marker for current location to view window
+                        const marker = new google.maps.Marker({
+                            position: {lat: location.lat, lng: location.lng},
+                            map: map
+                        });
+
+                        const infowindow = new google.maps.InfoWindow({
+                            maxWidth: 300,
+                            content: `<p><strong>${location.name}</strong></p><p>Added by: ${location.username}</p><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${location.photo_ref}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'></img><button key=${location._id}>click here for the full description</button>`
+                        });
+
+                        // info window automatically pops up
+                        infowindow.open(map, marker);
                     }
                 });}
 
@@ -64,10 +78,6 @@ export const DataMap = ({
                 google.maps.event.addListener(marker, "click", () => {
                     infowindow.open(map, marker);
                 });
-            }
-            else {
-                // make searched location infomap pop up
-                
             }
         }
     }, [ref, mapId, locations, useClusters, selected, result]);
