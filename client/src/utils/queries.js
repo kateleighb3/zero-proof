@@ -11,6 +11,12 @@ export const QUERY_USER = gql`
         thoughtText
         createdAt
       }
+export const QUERY_PROFILES = gql`
+  query allProfiles {
+    profiles {
+      _id
+      name
+      locations
     }
   }
 `;
@@ -22,9 +28,17 @@ export const QUERY_THOUGHTS = gql`
       thoughtText
       thoughtAuthor
       createdAt
+
+export const QUERY_SINGLE_PROFILE = gql`
+  query singleProfile($profileId: ID!) {
+    profile(profileId: $profileId) {
+      _id
+      name
+      locations
     }
   }
 `;
+
 
 export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleThought($thoughtId: ID!) {
@@ -39,9 +53,19 @@ export const QUERY_SINGLE_THOUGHT = gql`
         commentAuthor
         createdAt
       }
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      name
+      locations
+      favorites
+
     }
   }
 `;
+
 
 export const QUERY_ME = gql`
   query me {
@@ -58,3 +82,34 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_LOCATIONS = gql`
+  query allLocations {
+    locations {
+      _id
+      createdAt
+      name
+      lat
+      lng
+      photo_ref
+      description
+      username
+    }
+  }
+`;
+
+export const QUERY_SINGLE_LOCATION = gql`
+  query singleLocation($locationId: ID!) {
+    location(locationId: $locationId) {
+      _id
+      createdAt
+      name
+      lat
+      lng
+      photo_ref
+      description
+      username
+      comments
+    }
+  }
+`

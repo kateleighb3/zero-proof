@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom/dist'
 import './index.css'
 
 import App from './App.jsx'
+
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -14,6 +15,10 @@ import Recipes from './pages/Recipes';
 import Drinks from './pages/Drinks';
 import Spirits from './pages/Spirits';
 import Beer from './pages/Beer';
+
+// for testing the maps
+import MainMap from './pages/MainMap';
+import SearchMapHolder from './pages/SearchMapHolder';
 
 const router = createBrowserRouter([
   {
@@ -64,7 +69,17 @@ const router = createBrowserRouter([
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
+
+      }, 
+      {
+        path: '/mainmap',
+        element: <MainMap />
+      },
+      {
+        path: '/searchmap',
+        element: <SearchMapHolder />
       }
+     
     ]
   }
 ])

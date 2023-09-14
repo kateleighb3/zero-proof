@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -19,10 +20,18 @@ export const ADD_USER = gql`
       user {
         _id
         username
+export const ADD_PROFILE = gql`
+  mutation addProfile($name: String!, $email: String!, $password: String!) {
+    addProfile(name: $name, email: $email, password: $password) {
+      token
+      profile {
+        _id
+        name
       }
     }
   }
 `;
+
 
 export const ADD_THOUGHT = gql`
   mutation addThought($thoughtText: String!) {
@@ -35,9 +44,23 @@ export const ADD_THOUGHT = gql`
         _id
         commentText
       }
+
+export const ADD_LOCATION = gql`
+  mutation addLocation($name: String!, $lat: Float!, $lng: Float!, $photo_ref: String!, $description: String!, $username: String!) {
+    addLocation(name: $name, lat: $lat, lng: $lng, photo_ref: $photo_ref, description: $description, username: $username) {
+      _id
+      createdAt
+      name
+      lat
+      lng
+      photo_ref
+      description
+      username
+
     }
   }
 `;
+
 
 export const ADD_COMMENT = gql`
   mutation addComment($thoughtId: ID!, $commentText: String!) {
@@ -54,3 +77,25 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const REMOVE_LOCATION = gql`
+  mutation removeLocation($locationId: ID!) {
+    removeLocation(locationId: $locationId) {
+      location {
+        _id
+      createdAt
+      name
+      lat
+      lng
+      photo_ref
+      description
+      username
+      }
+      user {
+        _id
+        name
+      }
+    }
+  }
+`
+
