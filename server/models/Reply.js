@@ -1,19 +1,19 @@
 const { Schema, model } = require('mongoose');
 
-const commentSchema = new Schema(
+const replySchema = new Schema(
     {
         createdAt: {
             type: Date,
             default: Date.now
         },
-        commentText: {
+        commentBody: {
             type: String,
             required: true
         },
         username: {
             type: String,
             required: true
-        },
+        }
     },
     {
         toJSON: {
@@ -24,6 +24,6 @@ const commentSchema = new Schema(
 );
 
 // initialize model
-const Comment = model('comment', commentSchema);
+const Reply = model('reply', replySchema);
 
-module.exports = Comment;
+module.exports = Reply;
