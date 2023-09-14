@@ -50,25 +50,27 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
 
       {Auth.loggedIn() ? (
         <>
-          <p
+          {/* <p
             className={`m-0 ${
               characterCount === 280 || error ? 'text-danger' : ''
             }`}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
+          <div className = "flex justify-center">
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+            className=" w-3/4 backdrop-blur border-2 border-white flex justify-center justify-center items-center"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
+                  {/* <h3 className="text-white m-4 font-yellow text-4xl">What's up?</h3> */}
+
+            <div className="w-2/4">
               <textarea
                 name="thoughtText"
-                placeholder="Here's a new thought..."
+                placeholder="Write a review..."
                 value={thoughtText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -76,9 +78,9 @@ const ThoughtForm = () => {
               ></textarea>
             </div>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+            <div className="">
+              <button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">
+                Add Review
               </button>
             </div>
             {error && (
@@ -87,6 +89,7 @@ const ThoughtForm = () => {
               </div>
             )}
           </form>
+          </div>
         </>
       ) : (
         <p>
