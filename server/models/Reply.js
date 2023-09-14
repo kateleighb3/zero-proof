@@ -6,7 +6,7 @@ const replySchema = new Schema(
             type: Date,
             default: Date.now
         },
-        commentBody: {
+        commentText: {
             type: String,
             required: true
         },
