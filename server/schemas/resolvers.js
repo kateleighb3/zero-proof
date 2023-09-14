@@ -1,4 +1,4 @@
-const { Profile, Location } = require('../models');
+const { Profile, Location, Comment } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -58,25 +58,6 @@ const resolvers = {
       return { token, profile };
     },
 
-    // change to add location
-    // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw AuthenticationError;
-    },
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -84,24 +65,15 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    // edit to be locations
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
-          { new: true }
-        );
-      }
-      throw AuthenticationError;
-    },
 
     // location mutations
 
-    addLocation: async (parent, {name, lat, lng, photo_ref, description, username}) => {
-      const location = await Location.create({name, lat, lng, photo_ref, description, username});
-      return location;
+    addLocation: async (parent, {name, lat, lng, photo_ref, description, username}, context) => {
+      if(context.user) {
+        const location = await Location.create({name, lat, lng, photo_ref, description, username});
+        return location;
+      }
+      throw AuthenticationError;
     },
 
     // user can only remove location if it is theirs
@@ -115,7 +87,7 @@ const resolvers = {
         }
 
         // get current user
-        const user = Profile.findOneAndUpdate(
+        const user = await Profile.findOneAndUpdate(
           {_id: context.user._id},
           { $pull: { locations: locationId }},
           {new: true}
@@ -134,13 +106,17 @@ const resolvers = {
 
     // comment mutations
 
-    addComment: async (parent, { locationId, comment}, context) => {
+    addComment: async (parent, { locationId, commentBody, username}, context) => {
       if (context.user) {
-        return Location.findOneAndUpdate(
+        const comment = await Comment.create({commentBody, username})
+
+        const location = await Location.findOneAndUpdate(
           { _id: locationId },
-          { $addToSet: { comments: comment } },
+          { $addToSet: { comments: comment._id } },
           { new: true, runValidators: true}
         );
+
+        return { comment, location };
       }
       throw AuthenticationError;
     },
