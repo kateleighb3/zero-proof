@@ -138,6 +138,7 @@ const Profile = () => {
       }
     }
     setDetails(null);
+    window.location.reload();
     return;
   }
 
