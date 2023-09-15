@@ -18,7 +18,7 @@ const Beer = () => {
   const thoughts = data?.thoughts || [];
         
     return (
-            <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/tikibw.jpg")]'>
+            <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/volcano-2.jpg")]'>
               {/* <div className=> */}
               <div className="row relative w-full h-36"></div>
               {/* <div className="flex ml-40 mr-40"> */}

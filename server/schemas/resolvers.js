@@ -203,7 +203,7 @@ const resolvers = {
 
     // comment mutations
 
-    addComment: async (parent, { locationId, commentBody, username}, context) => {
+    addReply: async (parent, { locationId, commentBody, username}, context) => {
       if (context.user) {
         const comment = await Comment.create({commentBody, username})
 
