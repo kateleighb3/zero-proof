@@ -9,7 +9,6 @@ import { QUERY_LOCATIONS } from "../../../utils/queries";
 import {
   DataMap,
   GoogleMapsWrapper,
-  // LOCATIONS,
   Layout,
 } from "../";
 
