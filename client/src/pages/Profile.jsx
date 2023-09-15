@@ -2,7 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { ADD_LOCATION, ADD_FAVORITE } from "../utils/mutations";
+import { ADD_LOCATION, ADD_FAVORITE, REMOVE_FAVORITE } from "../utils/mutations";
 import * as React from 'react';
 import { useState, useMemo, useEffect, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
@@ -36,11 +36,10 @@ const Profile = () => {
 
   const [addLocation, { error }] = useMutation(ADD_LOCATION);
   const [addFavorite, _] = useMutation(ADD_FAVORITE);
+  const [removeFavorite, x ] = useMutation(REMOVE_FAVORITE);
 
   // update checkbox when favorited
   useEffect(() => {
-
-
     if (user) {
       const fav = document.getElementById('favorite');
       console.log(user);
@@ -135,18 +134,32 @@ const Profile = () => {
       try {
         const data = await addFavorite({
           variables: { userId: user._id, locationId: details._id }
-        })
+        });
       }
       catch (err) {
         console.log(err);
       }
     }
+    setDetails(null);
+    return;
   }
 
   const removeFav = async (event) => {
     event.preventDefault();
 
-    
+    if (details && user) {
+      try {
+        const data = await removeFavorite({
+          variables: { userId: user._id, locationId: details._id }
+        });
+      }
+      catch (err) {
+        console.log(err);
+      }
+      setDetails(null);
+      window.location.reload();
+      return;
+    }
   }
 
   return (
@@ -172,7 +185,7 @@ const Profile = () => {
               </IconButton>
               {details ?
                 (<div className="text-white">
-                  <form onSubmit={checked ? addFav : removeFav}>
+                  <form onSubmit={checked ? removeFav : addFav}>
                     <input type='checkbox' id='favorite' name='favorite' value={details._id}></input>
                     {checked ? (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Remove Favorite</button>) : (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Add Favorite</button>)}
                   </form>

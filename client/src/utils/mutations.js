@@ -24,7 +24,20 @@ export const ADD_FAVORITE = gql`
       }
     }
   }
-`
+`;
+
+export const REMOVE_FAVORITE = gql`
+  mutation removeFavorite($userId: ID!, $locationId: ID!) {
+    removeFavorite(userId: $userId, locationId: $locationId) {
+      _id
+      username
+      favorites {
+        _id
+        name
+      }
+    }
+  }
+`;
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
