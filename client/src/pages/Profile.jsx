@@ -88,8 +88,7 @@ const Profile = () => {
         });
         setForm(null);
         setDescription('');
-        console.log(data);
-        console.log(data.data.addLocation);
+        window.location.reload();
         setDetails(data.data.addLocation);
     }
     catch (err) {
