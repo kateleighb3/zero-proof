@@ -15,7 +15,8 @@ export const DataMap = ({
     content,
     selected,
     result,
-    setDetails
+    setDetails,
+    setForm
 }) => {
     const ref = useRef(null);
 
@@ -31,8 +32,8 @@ export const DataMap = ({
 
             // Displays cluster markers or single markers on map when called
             useClusters
-                ? addClusters({ locations, map, setDetails })
-                : addMarkers({ locations, map, setDetails });
+                ? addClusters({ locations, map, setDetails, setForm })
+                : addMarkers({ locations, map, setDetails, setForm });
 
             let addmarker = true;
 
@@ -58,6 +59,7 @@ export const DataMap = ({
 
                         // info automatically appears
                         setDetails(location);
+                        setForm(null);
 
                         // marker shows info when clicked
                         google.maps.event.addListener(marker, "click", () => {
@@ -65,10 +67,9 @@ export const DataMap = ({
                             setDetails(location);
                         });
 
-
-
                         google.maps.event.addListener(infowindow, 'closeclick', function () {
                             setDetails(null);
+                            setForm(null);
                         });
                     }
                 });
@@ -85,21 +86,26 @@ export const DataMap = ({
                 // add info to infowindow
                 const infowindow = new google.maps.InfoWindow({
                     maxWidth: 300,
-                    content: `<div className="m-0 p-0 flex justify-center items-center"><p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p><img src=${result ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${result.result.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E` : null}></img><p>Location has not been added yet</p><button className="button">Click Here to Add Location</button></div>`,
+                    content: `<div className="m-0 p-0 flex justify-center items-center"><p><strong>${result ? result.result.name : ''}</strong></p><p>${result ? result.result.formatted_address : ''}</p></div>`,
                 });
 
                 // info window automatically pops up
                 infowindow.open(map, marker);
 
+                // form automatically appears
                 setDetails(null);
+                setForm(result? result.result : null);
 
                 google.maps.event.addListener(infowindow, 'closeclick', function () {
                     setDetails(null);
+                    setForm(null);
                 });
 
                 // add infowindow to marker
                 google.maps.event.addListener(marker, "click", () => {
                     infowindow.open(map, marker);
+                    setDetails(null);
+                    setForm(result? result.result : null);
                 });
             }
         }

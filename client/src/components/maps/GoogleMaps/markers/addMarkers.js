@@ -2,7 +2,8 @@
 export const addMarkers = ({
     locations,
     map,
-    setDetails
+    setDetails,
+    setForm
   }) =>
     locations.map((location) => {
       const marker = new google.maps.Marker({
@@ -22,10 +23,12 @@ export const addMarkers = ({
       google.maps.event.addListener(marker, "click", () => {
         infowindow.open(map, marker);
         setDetails(location);
+        setForm(null);
       });
 
       google.maps.event.addListener(infowindow,'closeclick',function(){
         setDetails(null);
+        setForm(null);
       });
 
       return marker;

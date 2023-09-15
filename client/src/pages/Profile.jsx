@@ -32,6 +32,9 @@ const Profile = () => {
   // for location details
   const [details, setDetails] = useState(null);
 
+  // for form
+  const [form, setForm] = useState(null);
+
   const [addLocation, { error }] = useMutation(ADD_LOCATION);
 
   const { loading, data } = useQuery(
@@ -79,17 +82,28 @@ const Profile = () => {
   // create new location from input
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
         const data = await addLocation({
-            variables: { name: result.result.name, lat: selected.lat, lng: selected.long, photo_reference: result.result.photos[0].photo_reference, description: description, username: user?.username }
+            variables: { name: form.name, lat: selected.lat, lng: selected.long, photo_ref: form.photos[0].photo_reference, description: description, username: user?.username }
         });
-
+        setForm(null);
         setDescription('');
+        console.log(data);
+        console.log(data.data.addLocation);
+        setDetails(data.data.addLocation);
     }
     catch (err) {
         console.log(err);
     }
+};
+
+// save changes in description
+const handleChange = (event) => {
+  const { name, value } = event.target;
+
+  if (name === 'description' && value.length <= 280) {
+    setDescription(value);
+  }
 };
 
   return (
@@ -102,7 +116,7 @@ const Profile = () => {
           <div className="column backdrop-blur m-5 p-10 float-left w-2/5 border-2 border-white">
             <h3 className="font-sans text-2xl text-white">Find a bar:</h3>
 
-            <form>
+            <div>
               <PlacesAutocomplete 
                 id="search-bar"
                 className="text bg-white"
@@ -121,13 +135,32 @@ const Profile = () => {
                   <p>{details.description}</p>
                 </div>) : (<div></div>)
               }
-            </form>
+              {form ? 
+              (<form onSubmit={handleFormSubmit} className="text-white">
+                <p className='border-2'>This location is currently not in the system. Fill out the form below to add it!</p>
+                <h3>{form.name}</h3>
+                <p>{form.formatted_address}</p>
+                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${form.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E`}></img>
+                <textarea
+                  name="description"
+                  placeholder="Write a description..."
+                  value={description}
+                  className="form-input w-100"
+                  style={{ lineHeight: '1.5', resize: 'vertical' }}
+                  onChange={handleChange}
+                ></textarea>
+                <button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">
+                Add Location
+              </button>
+              </form>) : (<div></div>)
+              }
+            </div>
 
           </div>
 
           {/* second col */}
           <div className="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
-            <MainMap selected={selected} setDetails={setDetails} latlng ={selected ? {lat, lng} : null} result={result}/>
+            <MainMap selected={selected} setForm={setForm} setDetails={setDetails} latlng ={selected ? {lat, lng} : null} result={result}/>
           </div>
         </div>
       </div>
