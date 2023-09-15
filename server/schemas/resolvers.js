@@ -8,7 +8,7 @@ const resolvers = {
       return User.find().populate('thoughts');
     },
     user: async (parent, { profileId }) => {
-      return User.findOne({ _id: profileId }).populate('thoughts').populate('locations');
+      return User.findOne({ _id: profileId }).populate('thoughts').populate('locations').populate('favorites');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -19,7 +19,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('thoughts').populate('locations').populate('favorites');
       }
       throw AuthenticationError;
     },
@@ -57,6 +57,18 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    addFavorite: async (parent, { locationId }, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favorites: locationId } }
+        );
+
+          return user;
+      }
+      throw AuthenticationError;
     },
 
     addThought: async (parent, { thoughtText }, context) => {

@@ -1,16 +1,12 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 
-import ThoughtForm from '../components/ThoughtForm';
-import ThoughtList from '../components/ThoughtList';
-
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { ADD_LOCATION } from "../utils/mutations";
 import * as React from 'react';
 import { useState, useMemo, useEffect, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
 
 import MainMap from '../components/maps/GoogleMaps/MainMap';
 import { GoogleMapsWrapper } from '../components/maps';

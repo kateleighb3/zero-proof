@@ -13,6 +13,27 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_FAVORITE = gql`
+  mutation addFavorite($locationId: ID!) {
+    addFavorite(locationId: $locationId) {
+      user {
+        _id
+        username
+        favorites {
+          _id
+          createdAt
+          name
+          lat
+          lng
+          photo_ref
+          description
+          username
+        }
+      }
+    }
+  }
+`
+
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {

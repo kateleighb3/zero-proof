@@ -6,7 +6,8 @@ const typeDefs = `
     email: String
     password: String
     thoughts: [Thought]!
-    locations: [Location]!
+    locations: [Location]
+    favorites: [Location]
   }
 
   type Thought {
@@ -61,6 +62,8 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+
+    addFavorite(locationId: ID!): Location
 
     removeUser: User
     removeSkill(skill: String!): User

@@ -21,6 +21,16 @@ export const QUERY_USER = gql`
         description
         username
       }
+      favorites {
+        _id
+        createdAt
+        name
+        lat
+        lng
+        photo_ref
+        description
+        username
+      }
     }
   }
 `;
