@@ -3,20 +3,25 @@ import { useQuery } from "@apollo/client";
 
 import React from "react";
 
-import { QUERY_LOCATIONS } from "../utils/queries";
+import { QUERY_LOCATIONS } from "../../../utils/queries";
 
 // imports all parts that make up the map
 import {
   DataMap,
-  GoogleMapsWrapper,
-  // LOCATIONS,
   Layout,
-} from "../components/maps";
+} from "../";
 
 
 
 // the wrapper is for ease with api calls
-const MainMap = () => {
+const MainMap = ({
+  latlng,
+  content,
+  selected,
+  result,
+  setDetails,
+  setForm
+}) => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
 
@@ -25,11 +30,10 @@ const MainMap = () => {
   {loading ? (
     <div>Loading...</div>
   ) : (
-  <GoogleMapsWrapper>
+  
     <Layout>
-      <DataMap mapId="map_id" locations={locations} />
+      <DataMap className={"text-black"} result={result} selected={selected} setForm={setForm} setDetails={setDetails} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
     </Layout>
-  </GoogleMapsWrapper>
   )}
   </>
 );

@@ -13,6 +13,32 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_FAVORITE = gql`
+  mutation addFavorite($userId: ID!, $locationId: ID!) {
+    addFavorite(userId: $userId, locationId: $locationId) {
+      _id
+      username
+      favorites {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const REMOVE_FAVORITE = gql`
+  mutation removeFavorite($userId: ID!, $locationId: ID!) {
+    removeFavorite(userId: $userId, locationId: $locationId) {
+      _id
+      username
+      favorites {
+        _id
+        name
+      }
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {

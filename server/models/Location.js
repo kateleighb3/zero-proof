@@ -1,11 +1,12 @@
 const { Schema, model } = require('mongoose');
-// const Comment = require('./Comment');
+const dateFormat = require('../utils/dateFormat');
 
 const locationSchema = new Schema(
     {
         createdAt: {
             type: Date,
-            default: Date.now
+            default: Date.now,
+            get: (timestamp) => dateFormat(timestamp),
         },
         name: {
             type: String
