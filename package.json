@@ -11,7 +11,9 @@
       "develop": "concurrently \"cd server && npm run start\" \"cd client && npm run dev\"",
       "install": "cd server  && npm i --legacy-peer-deps && cd ../client && npm i --legacy-peer-deps",
       "seed": "cd server && npm run seed",
-      "build": "cd client && npm run build"
+      "build": "cd client && npm run build",
+      "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+    "heroku-postbuild" : "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;",
     },
     "keywords": [],
     "author": "",
