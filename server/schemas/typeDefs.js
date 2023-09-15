@@ -5,8 +5,9 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
-    locations: [Location]!
+    thoughts: [Thought]
+    locations: [Location]
+    favorites: [Location]
   }
 
   type Thought {
@@ -14,24 +15,24 @@ const typeDefs = `
     thoughtText: String
     thoughtAuthor: String
     createdAt: String
-    comments: [Comment]!
+    comments: [Comment]
   }
 
   type Reply {
-    createdAt: Int
+    createdAt: String
     commentBody: String
     username: String
   }
 
   type Comment {
-    createdAt: Int
+    createdAt: String
     commentBody: String
     username: String
   }
 
   type Location {
     _id: ID
-    createdAt: Int
+    createdAt: String
     name: String
     lat: Float
     lng: Float
@@ -54,13 +55,16 @@ const typeDefs = `
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     
-    locations: [Location]!
+    locations: [Location]
     location(locationId: ID!): Location
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+
+    addFavorite(userId: ID!, locationId: ID!): User!
+    removeFavorite(userId: ID!, locationId: ID!): User!
 
     removeUser: User
     removeSkill(skill: String!): User
