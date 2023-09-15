@@ -42,13 +42,10 @@ const Profile = () => {
   useEffect(() => {
     if (user) {
       const fav = document.getElementById('favorite');
-      console.log(user);
       if (fav) {
         fav.checked = false;
         setChecked(false);
-        console.log(user.favorites);
         user.favorites.map((favorite) => {
-          console.log(favorite);
           if (favorite._id === details._id) {
             fav.checked = true;
             setChecked(true);
@@ -173,6 +170,7 @@ const Profile = () => {
             <h3 className="font-sans text-2xl text-white">Find a bar:</h3>
 
             <div>
+              <div className="w-3/4 backdrop-blur flex justify-center justify-center items-center">
               <PlacesAutocomplete
                 id="search-bar"
                 className="text bg-white"
@@ -183,10 +181,11 @@ const Profile = () => {
               <IconButton type="submit" aria-label="search">
                 <SearchIcon style={{ fill: "green" }} />
               </IconButton>
+              </div>
               {details ?
                 (<div className="text-white">
                   <form onSubmit={checked ? removeFav : addFav}>
-                    <input type='checkbox' id='favorite' name='favorite' value={details._id}></input>
+                    <input type='checkbox' id='favorite' name='favorite' style={{opacity:0}} value={details._id}></input>
                     {checked ? (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Remove Favorite</button>) : (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Add Favorite</button>)}
                   </form>
                   <h3>{details.name}</h3>

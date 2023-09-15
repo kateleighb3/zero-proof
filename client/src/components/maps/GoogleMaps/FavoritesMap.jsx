@@ -35,13 +35,10 @@ export const FavoritesMap = ({
     useEffect(() => {
         if (user) {
             const fav = document.getElementById('favorite');
-            console.log(user);
             if (fav) {
                 fav.checked = false;
                 setChecked(false);
-                console.log(user.favorites);
                 user.favorites.map((favorite) => {
-                    console.log(favorite);
                     if (favorite._id === details._id) {
                         fav.checked = true;
                         setChecked(true);
@@ -67,7 +64,6 @@ export const FavoritesMap = ({
         }
     }, [ref]);
 
-    console.log(user.favorites);
 
     const removeFav = async (event) => {
         event.preventDefault();
@@ -92,7 +88,7 @@ export const FavoritesMap = ({
             {details ?
                 (<div className="column backdrop-blur m-5 p-10 float-left w-2/5 border-2 border-white text-white">
                     <form onSubmit={removeFav}>
-                        <input type='checkbox' id='favorite' name='favorite' value={details._id}></input>
+                        <input type='checkbox' id='favorite' name='favorite' style={{opacity:0}} value={details._id}></input>
                         <button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Remove Favorite</button>
                     </form>
                     <h3>{details.name}</h3>
