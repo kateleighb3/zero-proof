@@ -2,10 +2,11 @@
 export const addMarkers = ({
     locations,
     map,
+    setDetails
   }) =>
-    locations.map(({ _id, name, lat, lng, photo_ref, username  }) => {
+    locations.map((location) => {
       const marker = new google.maps.Marker({
-        position: { lat, lng },
+        position: { lat: location.lat, lng: location.lng },
         map,
       });
 
@@ -14,12 +15,17 @@ export const addMarkers = ({
         // this info will actually be saved in the database instead being manually added
         // along with its lat and long
         maxWidth: 300,
-        content: `<p><strong>${name}</strong></p><p>Added by: ${username}</p><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${photo_ref}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'></img><button key=${_id}>click here for the full description</button>`,
+        content: `<p><strong>${location.name}</strong></p>`,
       });
     
       // marker shows info when clicked
       google.maps.event.addListener(marker, "click", () => {
         infowindow.open(map, marker);
+        setDetails(location);
+      });
+
+      google.maps.event.addListener(infowindow,'closeclick',function(){
+        setDetails(null);
       });
 
       return marker;

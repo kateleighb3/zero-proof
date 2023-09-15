@@ -14,7 +14,8 @@ export const DataMap = ({
     latlng,
     content,
     selected,
-    result
+    result,
+    setDetails
 }) => {
     const ref = useRef(null);
 
@@ -30,32 +31,48 @@ export const DataMap = ({
 
             // Displays cluster markers or single markers on map when called
             useClusters
-                ? addClusters({ locations, map })
-                : addMarkers({ locations, map });
+                ? addClusters({ locations, map, setDetails })
+                : addMarkers({ locations, map, setDetails });
 
             let addmarker = true;
 
             // check for if location is currenlty in db
-            if (locations != [])
-                {locations.map((location) => {
+            if (locations != []) {
+                locations.map((location) => {
                     if (location && selected && location.lat === latlng.lat && location.lng === latlng.lng) {
                         addmarker = false;
 
                         // create new marker for current location to view window
                         const marker = new google.maps.Marker({
-                            position: {lat: location.lat, lng: location.lng},
+                            position: { lat: location.lat, lng: location.lng },
                             map: map
                         });
 
                         const infowindow = new google.maps.InfoWindow({
                             maxWidth: 300,
-                            content: `<p><strong>${location.name}</strong></p><p>Added by: ${location.username}</p><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${location.photo_ref}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'></img><button key=${location._id}>click here for the full description</button>`
+                            content: `<p><strong>${location.name}</strong></p>`
                         });
 
                         // info window automatically pops up
                         infowindow.open(map, marker);
+
+                        // info automatically appears
+                        setDetails(location);
+
+                        // marker shows info when clicked
+                        google.maps.event.addListener(marker, "click", () => {
+                            infowindow.open(map, marker);
+                            setDetails(location);
+                        });
+
+
+
+                        google.maps.event.addListener(infowindow, 'closeclick', function () {
+                            setDetails(null);
+                        });
                     }
-                });}
+                });
+            }
 
             // if there is not already a location with this
             if (addmarker) {
@@ -73,6 +90,12 @@ export const DataMap = ({
 
                 // info window automatically pops up
                 infowindow.open(map, marker);
+
+                setDetails(null);
+
+                google.maps.event.addListener(infowindow, 'closeclick', function () {
+                    setDetails(null);
+                });
 
                 // add infowindow to marker
                 google.maps.event.addListener(marker, "click", () => {

@@ -20,7 +20,8 @@ const MainMap = ({
   latlng,
   content,
   selected,
-  result
+  result,
+  setDetails
 }) => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
@@ -32,7 +33,7 @@ const MainMap = ({
   ) : (
   
     <Layout>
-      <DataMap className={"text-black"} result={result} selected={selected} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
+      <DataMap className={"text-black"} result={result} selected={selected} setDetails={setDetails} mapId="map_id" locations={locations} latlng={latlng} content={content}/>
     </Layout>
   )}
   </>

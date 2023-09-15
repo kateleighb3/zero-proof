@@ -29,6 +29,9 @@ const Profile = () => {
   const [result, setResult] = useState(null);
   const [description, setDescription] = useState('');
 
+  // for location details
+  const [details, setDetails] = useState(null);
+
   const [addLocation, { error }] = useMutation(ADD_LOCATION);
 
   const { loading, data } = useQuery(
@@ -105,28 +108,26 @@ const Profile = () => {
                 className="text bg-white"
                 label="Enter a city name"
                 variant="outlined"
-                setSelected={setSelected} setResult={setResult} 
+                setSelected={setSelected} setResult={setResult}
               />
-              {/* <TextField
-                onInput={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-                label="Enter a city name"
-                variant="outlined"
-                placeholder="Search..."
-                size="small"
-              /> */}
               <IconButton type="submit" aria-label="search">
                 <SearchIcon style={{ fill: "green" }} />
               </IconButton>
-              
+              {details ?
+                ( <div className="text-white">
+                  <h3>{details.name}</h3>
+                  <h2>Added by: {details.username} on {details.createdAt}</h2>
+                  <img src={'https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=' + details.photo_ref + '&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'}></img>
+                  <p>{details.description}</p>
+                </div>) : (<div></div>)
+              }
             </form>
 
           </div>
 
           {/* second col */}
           <div className="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
-            <MainMap selected={selected} latlng ={selected ? {lat, lng} : null} result={result}/>
+            <MainMap selected={selected} setDetails={setDetails} latlng ={selected ? {lat, lng} : null} result={result}/>
           </div>
         </div>
       </div>
