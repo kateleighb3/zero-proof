@@ -5,7 +5,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('thoughts').populate('locations').populate('favorites');
     },
     user: async (parent, { profileId }) => {
       return User.findOne({ _id: profileId }).populate('thoughts').populate('locations').populate('favorites');
@@ -59,16 +59,26 @@ const resolvers = {
       return { token, user };
     },
 
-    addFavorite: async (parent, { locationId }, context) => {
-      if (context.user) {
+    addFavorite: async (parent, { userId, locationId }, context) => {
         const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { favorites: locationId } }
+          { _id: userId },
+          { $addToSet: { favorites: locationId } },
+          {
+            new: true,
+            runValidators: true,
+          }
         );
 
           return user;
-      }
-      throw AuthenticationError;
+    },
+
+    removeFavorite: async (parent, {userId, locationId }, context) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { favorites: locationId } },
+        {new: true}
+      );
+      return user;
     },
 
     addThought: async (parent, { thoughtText }, context) => {
@@ -151,6 +161,13 @@ const resolvers = {
     addLocation: async (parent, {name, lat, lng, photo_ref, description, username}, context) => {
       if(context.user) {
         const location = await Location.create({name, lat, lng, photo_ref, description, username});
+
+        const user = await User.findOneAndUpdate(
+          {_id: context.user._id},
+          { $addToSet: { locations: location._id }},
+          {new: true}
+        );
+
         return location;
       }
       throw AuthenticationError;

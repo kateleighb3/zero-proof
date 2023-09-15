@@ -5,7 +5,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    thoughts: [Thought]
     locations: [Location]
     favorites: [Location]
   }
@@ -15,7 +15,7 @@ const typeDefs = `
     thoughtText: String
     thoughtAuthor: String
     createdAt: String
-    comments: [Comment]!
+    comments: [Comment]
   }
 
   type Reply {
@@ -55,7 +55,7 @@ const typeDefs = `
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     
-    locations: [Location]!
+    locations: [Location]
     location(locationId: ID!): Location
   }
 
@@ -63,7 +63,8 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addFavorite(locationId: ID!): Location
+    addFavorite(userId: ID!, locationId: ID!): User!
+    removeFavorite(userId: ID!, locationId: ID!): User!
 
     removeUser: User
     removeSkill(skill: String!): User

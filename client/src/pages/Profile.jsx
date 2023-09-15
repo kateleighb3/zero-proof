@@ -2,7 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { ADD_LOCATION } from "../utils/mutations";
+import { ADD_LOCATION, ADD_FAVORITE } from "../utils/mutations";
 import * as React from 'react';
 import { useState, useMemo, useEffect, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
@@ -20,7 +20,7 @@ import { PlacesAutocomplete } from "../components/maps/GoogleMaps/PlacesAutocomp
 const Profile = () => {
   const { profileId } = useParams();
 
-    // search bar and search results
+  // search bar and search results
   const [selected, setSelected] = useState(null);
   const [result, setResult] = useState(null);
   const [description, setDescription] = useState('');
@@ -31,7 +31,33 @@ const Profile = () => {
   // for form
   const [form, setForm] = useState(null);
 
+  // for favorite checkbox
+  const [checked, setChecked] = useState(false);
+
   const [addLocation, { error }] = useMutation(ADD_LOCATION);
+  const [addFavorite, _] = useMutation(ADD_FAVORITE);
+
+  // update checkbox when favorited
+  useEffect(() => {
+
+
+    if (user) {
+      const fav = document.getElementById('favorite');
+      console.log(user);
+      if (fav) {
+        fav.checked = false;
+        setChecked(false);
+        console.log(user.favorites);
+        user.favorites.map((favorite) => {
+          console.log(favorite);
+          if (favorite._id === details._id) {
+            fav.checked = true;
+            setChecked(true);
+          }
+        });
+      }
+    }
+  }, [details]);
 
   const { loading, data } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
@@ -65,41 +91,63 @@ const Profile = () => {
     );
   }
 
+
   // for search marker
   let lat;
   let lng;
 
   // sets variables if a place is selected (sent to map)
   if (selected) {
-      lat = selected.lat;
-      lng = selected.long;
+    lat = selected.lat;
+    lng = selected.long;
   }
 
   // create new location from input
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-        const data = await addLocation({
-            variables: { name: form.name, lat: selected.lat, lng: selected.long, photo_ref: form.photos[0].photo_reference, description: description, username: user?.username }
-        });
-        setForm(null);
-        setDescription('');
-        window.location.reload();
-        setDetails(data.data.addLocation);
+      const data = await addLocation({
+        variables: { name: form.name, lat: selected.lat, lng: selected.long, photo_ref: form.photos[0].photo_reference, description: description, username: user?.username }
+      });
+      setForm(null);
+      setDescription('');
+      window.location.reload();
+      setDetails(data.data.addLocation);
     }
     catch (err) {
-        console.log(err);
+      console.log(err);
     }
-};
+  };
 
-// save changes in description
-const handleChange = (event) => {
-  const { name, value } = event.target;
+  // save changes in description
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  if (name === 'description' && value.length <= 280) {
-    setDescription(value);
+    if (name === 'description' && value.length <= 280) {
+      setDescription(value);
+    }
+  };
+
+  const addFav = async (event) => {
+    event.preventDefault();
+
+    if (details && user) {
+      try {
+        const data = await addFavorite({
+          variables: { userId: user._id, locationId: details._id }
+        })
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
   }
-};
+
+  const removeFav = async (event) => {
+    event.preventDefault();
+
+    
+  }
 
   return (
     <GoogleMapsWrapper>
@@ -112,7 +160,7 @@ const handleChange = (event) => {
             <h3 className="font-sans text-2xl text-white">Find a bar:</h3>
 
             <div>
-              <PlacesAutocomplete 
+              <PlacesAutocomplete
                 id="search-bar"
                 className="text bg-white"
                 label="Enter a city name"
@@ -123,31 +171,35 @@ const handleChange = (event) => {
                 <SearchIcon style={{ fill: "green" }} />
               </IconButton>
               {details ?
-                ( <div className="text-white">
+                (<div className="text-white">
+                  <form onSubmit={checked ? addFav : removeFav}>
+                    <input type='checkbox' id='favorite' name='favorite' value={details._id}></input>
+                    {checked ? (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Remove Favorite</button>) : (<button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">Add Favorite</button>)}
+                  </form>
                   <h3>{details.name}</h3>
                   <h2>Added by: {details.username} on {details.createdAt}</h2>
                   <img src={'https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=' + details.photo_ref + '&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E'}></img>
                   <p>{details.description}</p>
                 </div>) : (<div></div>)
               }
-              {form ? 
-              (<form onSubmit={handleFormSubmit} className="text-white">
-                <p className='border-2'>This location is currently not in the system. Fill out the form below to add it!</p>
-                <h3>{form.name}</h3>
-                <p>{form.formatted_address}</p>
-                <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${form.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E`}></img>
-                <textarea
-                  name="description"
-                  placeholder="Write a description..."
-                  value={description}
-                  className="form-input w-100"
-                  style={{ lineHeight: '1.5', resize: 'vertical' }}
-                  onChange={handleChange}
-                ></textarea>
-                <button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">
-                Add Location
-              </button>
-              </form>) : (<div></div>)
+              {form ?
+                (<form onSubmit={handleFormSubmit} className="text-white">
+                  <p className='border-2'>This location is currently not in the system. Fill out the form below to add it!</p>
+                  <h3>{form.name}</h3>
+                  <p>{form.formatted_address}</p>
+                  <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=130&photo_reference=${form.photos[0].photo_reference}&key=AIzaSyCYa_WT4TQV0BTcRdm6pVYh_SbiBzn6u2E`}></img>
+                  <textarea
+                    name="description"
+                    placeholder="Write a description..."
+                    value={description}
+                    className="form-input w-100"
+                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    onChange={handleChange}
+                  ></textarea>
+                  <button className="m-4 text-white bg-green-700 text-2xl p-2 rounded" type="submit">
+                    Add Location
+                  </button>
+                </form>) : (<div></div>)
               }
             </div>
 
@@ -155,7 +207,7 @@ const handleChange = (event) => {
 
           {/* second col */}
           <div className="column m-5 p-10 backdrop-blur float-left w-3/5 text-white border-2 border-white">
-            <MainMap selected={selected} setForm={setForm} setDetails={setDetails} latlng ={selected ? {lat, lng} : null} result={result}/>
+            <MainMap selected={selected} setForm={setForm} setDetails={setDetails} latlng={selected ? { lat, lng } : null} result={result} />
           </div>
         </div>
       </div>
