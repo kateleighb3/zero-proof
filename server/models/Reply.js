@@ -8,7 +8,7 @@ const replySchema = new Schema(
             default: Date.now,
             get: (timestamp) => dateFormat(timestamp),
         },
-        commentBody: {
+        commentText: {
             type: String,
             required: true
         },

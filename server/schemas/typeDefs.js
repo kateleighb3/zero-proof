@@ -25,9 +25,10 @@ const typeDefs = `
   }
 
   type Comment {
+    _id: ID
+    commentText: String
+    commentAuthor: String
     createdAt: String
-    commentBody: String
-    username: String
   }
 
   type Location {
@@ -50,11 +51,9 @@ const typeDefs = `
   type Query {
     users: [User]
     user(profileId: ID!): User
-    me: User
-    
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
-    
+    me: User    
     locations: [Location]
     location(locationId: ID!): Location
   }

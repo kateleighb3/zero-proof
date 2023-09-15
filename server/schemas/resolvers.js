@@ -7,8 +7,8 @@ const resolvers = {
     users: async () => {
       return User.find().populate('thoughts').populate('locations').populate('favorites');
     },
-    user: async (parent, { profileId }) => {
-      return User.findOne({ _id: profileId }).populate('thoughts').populate('locations').populate('favorites');
+    user: async (parent, { username }) => {
+      return User.findOne({ _id: username }).populate('thoughts').populate('locations');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
