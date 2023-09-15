@@ -6,17 +6,16 @@ import { ADD_FAVORITE, REMOVE_FAVORITE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import * as React from 'react';
 
-import Auth from '../utils/auth';
+import { GoogleMapsWrapper } from '../components/maps';
+import { FavoritesMap } from '../components/maps/GoogleMaps/FavoritesMap'
 
+import Auth from '../utils/auth';
 
 
 const Favorites = () => {
 
     const { loading, data } = useQuery(
         QUERY_ME,
-        {
-            variables: { profileId: profileId },
-        }
     );
 
     const user = data?.me || data?.user || {};
@@ -37,9 +36,11 @@ const Favorites = () => {
     }
 
     return (
+        <GoogleMapsWrapper>
         <div className='bg-cover bg-[url("./assets/gabe.jpg")] relative h-screen w-full m-0 p-0'>
-            <div> Hey </div>
+            <FavoritesMap user={user}/>
         </div>
+        </GoogleMapsWrapper>
     );
 };
 
