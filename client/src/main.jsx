@@ -11,10 +11,16 @@ import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Favorites from './pages/Favorites';
 import Error from './pages/Error';
-import Recipes from './pages/Recipes';
+import Mocktails from './pages/Mocktails';
 import Drinks from './pages/Drinks';
 import Spirits from './pages/Spirits';
 import Beer from './pages/Beer';
+import ChileLimeSublime from './pages/ChileLimeSublime';
+import ChaiLax from './pages/ChaiLax';
+import TurmericTango from './pages/TurmericTango';
+import PineappleShake from './pages/PineappleShake';
+
+
 
 const router = createBrowserRouter([
   {
@@ -46,8 +52,8 @@ const router = createBrowserRouter([
       },
       
       {
-        path: '/recipes',
-        element: <Recipes />
+        path: '/mocktails',
+        element: <Mocktails />
       },
 
       {
@@ -64,7 +70,27 @@ const router = createBrowserRouter([
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
-      }
+      },
+
+      {
+        path: '/chile-lime-sublime',
+        element: <ChileLimeSublime />
+      },
+
+      {
+        path: '/chai-lax',
+        element: <ChaiLax />
+      },
+
+      {
+        path: '/turmeric-tango',
+        element: <TurmericTango />
+      },
+
+      {
+        path: '/pineapple-shake',
+        element: <PineappleShake />
+      },
     ]
   }
 ])

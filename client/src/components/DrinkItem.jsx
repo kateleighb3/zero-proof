@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 
-const DrinkItem = ({name, img}) => {
+const DrinkItem = ({img, name, ingredients, directions}) => {
     return(
 
-        
-        
-        <div className='relative flex items-center justify-center h-auto w-full shadow-xl shadow-indigo-500/50 group hover:bg-gradient-to-r from-rose-900 to-purple-950 cursor-pointer'>
-            <img src={img} alt={title} className='group-hover:opacity-10'/>
-            <div className='hidden group-hover:block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
-                <h3 className='text-2xl font-bold text-orange-500 tracking-wider text-center'>
-                    {title}
-                </h3>
-                <p className='pb-4 pt-2 text-orange-500 font-semibold text-center'>{tech}</p>
-            </div>
+        <div className = 'overlay flex flex-row justify-center backdrop-blur'>
+            <div className = 'drinkContainer flex flex-row justify-between m-2'>
+                <div className='w-80 h-96 flex flex-col items-center mr-8 justify-center '>
+                <img src={img} alt={name} className='object-fit' />
+                </div>
+                <div className = 'drinkContainerRight p-4 w-96 h-96 overflow-auto'>
+
+                <div className = 'content text-white'>
+                    <h2 className='font-bold font-yellow text-3xl mb-4'>{name}</h2>
+                    <h3 className= 'text-2xl font-bold'>Ingredients</h3>
+                    <p className='m-2'> {ingredients}</p>
+                    <h3 className= 'text-2xl font-bold'>Directions</h3>
+                    <p className='m-2'>{directions}</p>
+                    </div>
+                </div>
+                </div>
+
         </div>
+        
         
     );
 };
 
 
 
-export default ResumeItem
+export default DrinkItem

@@ -2,7 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import RecipeItem from '../components/RecipeItem';
+import MocktailItem from '../components/MocktailItem';
 import brooklyn from '../assets/brooklyn-eff.jpg';
 import athletic from '../assets/athletic.jpg';
 import lagunitas from '../assets/lagunitas.jpg';
@@ -12,13 +12,16 @@ import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
 
+import {backgroundImage} from '../utils/constants';
+
+
 
 const Beer = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
   const thoughts = data?.thoughts || [];
         
     return (
-            <main className='w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/volcano-2.jpg")]'>
+            <main className={`w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/${backgroundImage}")]`}>
               {/* <div className=> */}
               <div className="row relative w-full h-36"></div>
               {/* <div className="flex ml-40 mr-40"> */}

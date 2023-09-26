@@ -10,6 +10,9 @@ import ThoughtList from '../components/ThoughtList';
 import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
+import { backgroundImage } from '../utils/constants'
+
+
 
 
 
@@ -18,7 +21,7 @@ const Spirits = () => {
   const thoughts = data?.thoughts || [];
         
     return (
-          <main className='m-0 p-0 w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/tikistatue-2.jpg")]'>
+          <main className={`m-0 p-0 w-full min-h-screen bg-fixed bg-repeat relative bg-cover bg-[url("./assets/${backgroundImage}")]`}>
               {/* <div class="bg-repeat-y w-full bg-cover" style="background-image: url('./assets)"> */}
             <div className="row relative w-full h-36 "></div>
               <h2 className="feature-sign p-4 mt-2">Featured</h2>

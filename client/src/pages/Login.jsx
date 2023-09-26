@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import {backgroundImage} from '../utils/constants';
 
 import Auth from '../utils/auth';
 
@@ -41,7 +42,7 @@ const Login = (props) => {
   };
 
   return (
-    <main className='w-full h-screen relative bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")]'>
+    <main className={`w-full h-screen relative bg-cover bg-[url("./assets/${backgroundImage}")]`}>
       {/* <div className=> */}
      <div className="m-0 p-0 flex justify-center items-center min-h-screen">
         <div className="flex flex-col justify-center backdrop-blur">

@@ -62,7 +62,7 @@ const ThoughtForm = () => {
           </p> */}
           <div className = "flex justify-center">
           <form
-            className="w-3/4 backdrop-blur border-2 border-white flex justify-center justify-center items-center"
+            className="w-3/4 backdrop-blur border-2 border-white flex justify-center justify-center mt-8 items-center"
             onSubmit={handleFormSubmit}
           >
                   {/* <h3 className="text-white m-4 font-yellow text-4xl">What's up?</h3> */}
