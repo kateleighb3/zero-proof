@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+import {backgroundImage} from '../utils/constants';
+
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -39,7 +41,7 @@ const Signup = () => {
   };
 
   return (
-    <main className='w-full h-screen relative bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")]'>
+    <main className={`w-full h-screen relative bg-cover bg-[url("./assets/${backgroundImage}")]`}>
       <div className="m-0 p-0 flex justify-center items-center min-h-screen">
       <div className="flex flex-col justify-center backdrop-blur">
           <div className="text-white p-8 text-center">

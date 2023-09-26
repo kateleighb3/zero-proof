@@ -9,6 +9,10 @@ import { Link } from 'react-router-dom';
 import { QUERY_THOUGHTS } from '../utils/queries';
 import Auth from '.././utils/auth';
 
+import {backgroundImage} from '../utils/constants';
+
+
+
 const Home = () => {
   // const { loading, data } = useQuery(QUERY_THOUGHTS);
   // const thoughts = data?.thoughts || [];
@@ -18,7 +22,7 @@ const Home = () => {
   };
 
   return (
-    <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+    <div className={`bg-cover bg-[url("./assets/${backgroundImage}")] relative h-screen w-full m-0 p-0`}>
     {Auth.loggedIn() ? (
     <div className= "m-0 p-0 flex justify-center items-center min-h-screen">
    <div className='x-sign'>
@@ -41,7 +45,7 @@ const Home = () => {
 
     )
    
-  };
+  }
    </div>
   )
  

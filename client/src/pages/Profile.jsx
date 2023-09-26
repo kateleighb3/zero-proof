@@ -15,6 +15,7 @@ import Auth from '../utils/auth';
 
 // import autocomplete search bar
 import { PlacesAutocomplete } from "../components/maps/GoogleMaps/PlacesAutocomplete";
+import {backgroundImage} from '../utils/constants';
 
 
 const Profile = () => {
@@ -72,17 +73,16 @@ const Profile = () => {
   }
 
   if (loading) {
-    return <div className='bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>Loading...</div>;
+    return <div className={`bg-cover bg-[url("./assets/${backgroundImage}")] relative h-screen w-full m-0 p-0`}>Loading...</div>;
   }
 
   if (!user?.username) {
     return (
-      <div className='flex justify-center items-center bg-cover bg-[url("./assets/su-san-lee-g3PyXO4A0yc-unsplash.jpg")] relative h-screen w-full m-0 p-0'>
+      <div className={`bg-cover bg-[url("./assets/${backgroundImage}")] flex justify-center items-center  relative h-screen w-full m-0 p-0`}>
         <h4 className='text-white text-2xl'>
           You need to be logged in to see this. Use the navigation links above to
           sign up or log in!
         </h4>
-
       </div>
     );
   }
@@ -162,7 +162,7 @@ const Profile = () => {
 
   return (
     <GoogleMapsWrapper>
-      <div className='bg-cover bg-[url("./assets/palm-2.jpg")] relative h-screen w-full m-0 p-0'>
+      <div className={`bg-cover bg-[url("./assets/${backgroundImage}")] relative h-screen w-full m-0 p-0`}>
         <div className="m-0 p-0 flex justify-center items-center min-h-screen">
 
           {/* <div class="row content-none"> */}

@@ -1,0 +1,1 @@
+export const backgroundImage = "compress_img_1.8mb.jpg";
